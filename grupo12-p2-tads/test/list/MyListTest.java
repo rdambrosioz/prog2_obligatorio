@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedListTest {
+class MyListTest {
 
     private MyList<Integer> myList;
 
