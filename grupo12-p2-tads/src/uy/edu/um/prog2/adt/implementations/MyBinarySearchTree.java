@@ -1,7 +1,9 @@
 package uy.edu.um.prog2.adt.implementations;
 
+import uy.edu.um.prog2.adt.exeptions.EmptyQueue;
 import uy.edu.um.prog2.adt.exeptions.ListOutOfIndex;
 import uy.edu.um.prog2.adt.interfaces.MyList;
+import uy.edu.um.prog2.adt.interfaces.MyQueue;
 
 import java.util.Iterator;
 
@@ -68,7 +70,7 @@ public class MyBinarySearchTree<K extends Comparable<K>, T>
     @Override
     public MyList<T> nivel() {
         MyList<T> listaNivel = new MyLinkedList<>();
-        Queue<TreeNode<K,T>> listaSubTree = new MyLinkedList<>();
+        MyQueue<TreeNode<K,T>> listaSubTree = new MyLinkedList<>();
         listaSubTree.enqueue(this.root);
         while(! (listaSubTree.isEmpty())){
             TreeNode<K,T> temp = null;

@@ -1,14 +1,16 @@
 package uy.edu.um.prog2.adt.implementations;
 
 import uy.edu.um.prog2.adt.exeptions.EmptyList;
+import uy.edu.um.prog2.adt.exeptions.EmptyQueue;
 import uy.edu.um.prog2.adt.exeptions.EmptyStack;
 import uy.edu.um.prog2.adt.exeptions.ListOutOfIndex;
 import uy.edu.um.prog2.adt.interfaces.MyList;
+import uy.edu.um.prog2.adt.interfaces.MyQueue;
 import uy.edu.um.prog2.adt.interfaces.MyStack;
 
 import java.util.Iterator;
 
-public class MyLinkedList<T> implements MyList<T>, MyStack<T> {
+public class MyLinkedList<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     private Node<T> primero;
     private Node<T> ultimo;
     private int size;
@@ -407,6 +409,35 @@ public class MyLinkedList<T> implements MyList<T>, MyStack<T> {
         size = 0;
     }
 
+
+
+    /**
+     * AQUI SE ENCUENTRA EL CODIGO Y OPERACIONES DE LA IMPLEMENTACION DE UNA QUEUE
+     */
+    @Override
+    public void enqueue(T element) {
+        addLast(element);
+    }
+    @Override
+    public void enqueueWithPriority(T element) {
+        addInOrder(element);
+    }
+    @Override
+    public T dequeue() throws EmptyQueue {
+        Node<T> primero = this.primero;
+
+        if(size == 0){
+            throw  new EmptyQueue();
+        } else{
+            try {
+                remove(0);
+            } catch (ListOutOfIndex listOutOfIndex) {
+                listOutOfIndex.printStackTrace();
+            }
+        }
+
+        return primero.getValor();
+    }
 
 
 
