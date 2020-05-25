@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ef20e83a-40f6-41b8-b7aa-a86f83b92044" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/binarySearchTree/MyBinarySearchTreeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/hash/Cliente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/hash/ClienteNameHashKey.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/hash/MyCloseCuadraticHashTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/hash/MyCloseLinearHashTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/hash/MyOpenHashTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/heap/MyHeapTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/list/MyListTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/queue/MyQueueTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/stack/ArrayStackTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/grupo12-p2-tads/stack/MyStackTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/binarySearchTree/MyBinarySearchTreeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/binarySearchTree/MyBinarySearchTreeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hash/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/hash/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hash/ClienteNameHashKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/hash/ClienteNameHashKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hash/MyCloseCuadraticHashTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/hash/MyCloseCuadraticHashTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hash/MyCloseLinearHashTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/hash/MyCloseLinearHashTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/hash/MyOpenHashTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/hash/MyOpenHashTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/heap/MyHeapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/heap/MyHeapTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/list/MyListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/list/MyListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/queue/MyQueueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/queue/MyQueueTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/stack/ArrayStackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/stack/ArrayStackTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/stack/MyStackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/uy/edu/um/prog2/adt/stack/MyStackTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Usuario\git\p2\obligatorio\grupo12-p2-tads\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cHaMXeCAP79GmjPwQk5LcHXXZq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="queue" />
+      <recent name="hash" />
+      <recent name="uy.edu.um.prog2.adt.implementations" />
+      <recent name="heap" />
+      <recent name="binarySearchTree" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="uy.edu.um.prog2.adt" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.uy.edu.um.prog2.adt in grupo12-p2-tads">
+    <configuration name="All in grupo12-p2-tads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="grupo12-p2-tads" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LinkedListTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="grupo12-p2-tads" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uy.edu.um.prog2.adt.list.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="list" />
+      <option name="MAIN_CLASS_NAME" value="list.LinkedListTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyOpenHashTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="grupo12-p2-tads" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uy.edu.um.prog2.adt.hash.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uy.edu.um.prog2.adt.hash" />
+      <option name="MAIN_CLASS_NAME" value="uy.edu.um.prog2.adt.hash.MyOpenHashTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyStackTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="grupo12-p2-tads" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uy.edu.um.prog2.adt.stack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uy.edu.um.prog2.adt.stack" />
+      <option name="MAIN_CLASS_NAME" value="uy.edu.um.prog2.adt.stack.MyStackTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="uy.edu.um.prog2.adt in grupo12-p2-tads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="grupo12-p2-tads" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uy.edu.um.prog2.adt.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uy.edu.um.prog2.adt" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.uy.edu.um.prog2.adt in grupo12-p2-tads" />
+        <item itemvalue="JUnit.All in grupo12-p2-tads" />
+        <item itemvalue="JUnit.MyOpenHashTest" />
+        <item itemvalue="JUnit.MyStackTest" />
+        <item itemvalue="JUnit.LinkedListTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef20e83a-40f6-41b8-b7aa-a86f83b92044" name="Default Changelist" comment="" />
+      <created>1590187924234</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590187924234</updated>
+      <workItem from="1590187927427" duration="202000" />
+      <workItem from="1590189721323" duration="39000" />
+      <workItem from="1590190353241" duration="18000" />
+      <workItem from="1590238443261" duration="7905000" />
+      <workItem from="1590247521729" duration="37000" />
+      <workItem from="1590247607965" duration="76000" />
+      <workItem from="1590432026801" duration="216000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="660" y="190" key="#com.intellij.ide.util.MemberChooser" timestamp="1590241271199">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="660" y="190" key="#com.intellij.ide.util.MemberChooser/0.0.1707.960@0.0.1707.960" timestamp="1590241271199" />
+    <state x="585" y="256" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1590246944530">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="585" y="256" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1707.960@0.0.1707.960" timestamp="1590246944530" />
+    <state x="704" y="370" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1590246330476">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="704" y="370" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1707.960@0.0.1707.960" timestamp="1590246330476" />
+    <state x="541" y="406" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1590432213185">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="541" y="406" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1707.960@0.0.1707.960" timestamp="1590432213185" />
+    <state x="654" y="361" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1590432214607">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="654" y="361" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1707.960@0.0.1707.960" timestamp="1590432214607" />
+    <state x="452" y="75" key="CommitChangelistDialog2" timestamp="1590244589245">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="452" y="75" key="CommitChangelistDialog2/0.0.1707.960@0.0.1707.960" timestamp="1590244589245" />
+    <state x="635" y="236" key="FileChooserDialogImpl" timestamp="1590239296451">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="635" y="236" key="FileChooserDialogImpl/0.0.1707.960@0.0.1707.960" timestamp="1590239296451" />
+    <state width="1664" height="255" key="GridCell.Tab.0.bottom" timestamp="1590432242393">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state width="1664" height="255" key="GridCell.Tab.0.bottom/0.0.1707.960@0.0.1707.960" timestamp="1590432242393" />
+    <state width="1664" height="255" key="GridCell.Tab.0.center" timestamp="1590432242393">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state width="1664" height="255" key="GridCell.Tab.0.center/0.0.1707.960@0.0.1707.960" timestamp="1590432242393" />
+    <state width="1664" height="255" key="GridCell.Tab.0.left" timestamp="1590432242393">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state width="1664" height="255" key="GridCell.Tab.0.left/0.0.1707.960@0.0.1707.960" timestamp="1590432242393" />
+    <state width="1664" height="255" key="GridCell.Tab.0.right" timestamp="1590432242393">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state width="1664" height="255" key="GridCell.Tab.0.right/0.0.1707.960@0.0.1707.960" timestamp="1590432242393" />
+    <state x="335" y="55" key="SettingsEditor" timestamp="1590238472480">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="335" y="55" key="SettingsEditor/0.0.1707.960@0.0.1707.960" timestamp="1590238472480" />
+    <state x="552" y="305" key="com.intellij.ide.util.TipDialog" timestamp="1590190354015">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="552" y="305" key="com.intellij.ide.util.TipDialog/0.0.1707.960@0.0.1707.960" timestamp="1590190354015" />
+    <state x="582" y="374" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1590240758126">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="582" y="374" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1707.960@0.0.1707.960" timestamp="1590240758126" />
+    <state x="626" y="199" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1590246944992">
+      <screen x="0" y="0" width="1707" height="960" />
+    </state>
+    <state x="626" y="199" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1707.960@0.0.1707.960" timestamp="1590246944992" />
+  </component>
+</project>
