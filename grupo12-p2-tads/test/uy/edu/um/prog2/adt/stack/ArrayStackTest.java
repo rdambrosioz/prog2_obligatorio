@@ -5,7 +5,8 @@ import uy.edu.um.prog2.adt.exeptions.EmptyStack;
 import uy.edu.um.prog2.adt.implementations.ArrayStack;
 import uy.edu.um.prog2.adt.interfaces.MyStack;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class ArrayStackTest {
 
