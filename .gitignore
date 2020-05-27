@@ -1,18 +1,9 @@
-grupo12-p2-tads/.idea/**
-grupo12-p2-tads/out/**
-grupo12-p2/tads/lib/**
-grupo12-p2/tads/grupo12-p2-tads.iml
-
-
-
-
-
-grupo12-p2-obligatorio/.idea**
-grupo12-p2-obligatorio/.gradle/**
-grupo12-p2-obligatorio/graddle/**
-grupo12-p2-obligatorio/gradlew*
-grupo12-p2-obligatorio/gradle.bat
-grupo12-p2-obligatorio/build/**
+grupo12-p2-tads/.idea**
+grupo12-p2-tads/.gradle/**
+grupo12-p2-tads/graddle/**
+grupo12-p2-tads/gradlew*
+grupo12-p2-tads/gradle.bat
+grupo12-p2-tads/build/**
 
 
 
