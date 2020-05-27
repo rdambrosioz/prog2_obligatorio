@@ -22,7 +22,6 @@ dependencies {
 
 test {
 
-    // enable JUnit Platform (a.k.a. JUnit 5) support
     useJUnitPlatform()
     testLogging {
 
