@@ -61,57 +61,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
             size++;
         }
     }
-    public void addInOrder(T valor){
-        if (size == 0){
-            addFirst(valor);
-        } else {
-            if ( valor instanceof Comparable) {
-                if (((Comparable) primero.getValor()).compareTo(valor) < 0) {
-                    addFirst(valor);
-                } else {
-                    Node<T> temp = primero.getSiguiente();
-                    Node<T> anterior = primero;
-                    boolean seAgrego = false;
-
-                    while (temp != null) {
-
-                        if (((Comparable) temp.getValor()).compareTo(valor) < 0) {
-                            Node<T> nuevo = new Node<>(valor);
-                            anterior.setSiguiente(nuevo);
-                            nuevo.setSiguiente(temp);
-                            seAgrego = true;
-                            break;
-                        } else {
-                            anterior = temp;
-                            temp = temp.getSiguiente();
-                        }
-                    }
-
-                    if (seAgrego) {
-                        size++;
-                    } else {
-                        addLast(valor);
-                    }
-                }
-            }
-            else{
-                addLast(valor);
-            }
-        }
-    }
-    private void addLast(T valor){                         //Agrega al final
-
-
-
-        if (primero == null){                   //Si la lista es vacia agrega al principio
-            addFirst(valor);
-        } else{
-            Node<T> nodoNuevo = new Node<T>(valor);   //Si la lista no es vacia, solamente agrega seteando el siguiente del
-            ultimo.setSiguiente(nodoNuevo);     //ultimo y renueva el ultimo
-            ultimo = nodoNuevo;
-            size++;
-        }
-    }
 
     /**
      * AQUI SE ENCUENTRAN TODOS LOS DISTINTOS CODIGOS DE REMOVER UN ELEMENTO DE UNA LISTA LISTA
@@ -138,7 +87,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         }
         return retorno;
     }
-
     @Override
     public T removeLast() {
         T devolver = null;
@@ -164,7 +112,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         }
         return devolver;
     }
-
     @Override
     public T removeValue(T valor) {
         Node<T> anterior = null;
@@ -204,7 +151,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     public T get(int posicion) throws ListOutOfIndex {         //Devuelve el valor
         return devolverNodoPosicion(posicion).getValor();
     }
-
     @Override
     public T getValue(T valueToSearch) {
         T devolver = null;
@@ -217,23 +163,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
             }
         }
         return devolver;
-    }
-    private  Node<T> devolverNodoPosicion(int posicion) throws ListOutOfIndex{     //Devuelve el nodo en una posicion especifica
-
-        Node<T> temp = null;
-
-        if (posicion >= size || posicion < 0){          //Ceckea que exista la pos
-            throw  new ListOutOfIndex(size);
-        }else if (posicion == (size-1)){                //Checkea si es el ultimo
-            temp = ultimo;
-        }  else{                                        //Recorre la cantidad de veces necesarias y devuelve el ultimo
-            temp = primero;
-            for (int i = 0; i < posicion ; i++){
-                temp = temp.getSiguiente();
-            }
-        }
-
-        return temp;
     }
     @Override
     public boolean contains (T valor){          //Devuelve si el valor esta en la lista
@@ -255,7 +184,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         return esta;
     }
 
-
     /**
      * OPERACIONES VARIAS DE LISTA
      */
@@ -264,6 +192,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
 
         return new MyLinkedListIterator<T>(primero);
     }
+    @Override
     public int getSize() {
         return size;
     }
@@ -272,24 +201,8 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         return visualize(" ");
     }
 
-
-
-    private String visualize(String separacion){
-
-        Node<T> temp = primero;
-        String str = "";
-
-        while(temp != null){
-            str = str + (temp.getValor() + separacion);
-            temp = temp.getSiguiente();
-        }
-        str = str + "\n";
-        return str;
-    }
-
-
     /**
-     * OPERACIONES PARA OPEREARO CON DISTINTAS LISTAS
+     * OPERACIONES PARA OPEREAR CON DISTINTAS LISTAS
      */
     @Override
     public void interchange (T valor, int direccion) throws EmptyList {
@@ -358,7 +271,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     }
 
 
-
     /**
      * AQUI SE ENCUENTRA EL CODIGO Y OPERACIONES DE LA IMPLEMENTACION DEL STACK
      */
@@ -370,6 +282,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         }
         return value;
     }
+
     @Override
     public T top() throws EmptyStack {
 
@@ -407,8 +320,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         size = 0;
     }
 
-
-
     /**
      * AQUI SE ENCUENTRA EL CODIGO Y OPERACIONES DE LA IMPLEMENTACION DE UNA QUEUE
      */
@@ -437,7 +348,88 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         return primero.getValor();
     }
 
+    /**
+     * OPERACIONES PRIVADAS DE LINKEDLIST
+     */
+    private void addInOrder(T valor){
+        if (size == 0){
+            addFirst(valor);
+        } else {
+            if ( valor instanceof Comparable) {
+                if (((Comparable) primero.getValor()).compareTo(valor) < 0) {
+                    addFirst(valor);
+                } else {
+                    Node<T> temp = primero.getSiguiente();
+                    Node<T> anterior = primero;
+                    boolean seAgrego = false;
+
+                    while (temp != null) {
+
+                        if (((Comparable) temp.getValor()).compareTo(valor) < 0) {
+                            Node<T> nuevo = new Node<>(valor);
+                            anterior.setSiguiente(nuevo);
+                            nuevo.setSiguiente(temp);
+                            seAgrego = true;
+                            break;
+                        } else {
+                            anterior = temp;
+                            temp = temp.getSiguiente();
+                        }
+                    }
+
+                    if (seAgrego) {
+                        size++;
+                    } else {
+                        addLast(valor);
+                    }
+                }
+            }
+            else{
+                addLast(valor);
+            }
+        }
+    }
+    private  Node<T> devolverNodoPosicion(int posicion) throws ListOutOfIndex{     //Devuelve el nodo en una posicion especifica
+
+        Node<T> temp = null;
+
+        if (posicion >= size || posicion < 0){          //Ceckea que exista la pos
+            throw  new ListOutOfIndex(size);
+        }else if (posicion == (size-1)){                //Checkea si es el ultimo
+            temp = ultimo;
+        }  else{                                        //Recorre la cantidad de veces necesarias y devuelve el ultimo
+            temp = primero;
+            for (int i = 0; i < posicion ; i++){
+                temp = temp.getSiguiente();
+            }
+        }
+
+        return temp;
+    }
+    private void addLast(T valor){                         //Agrega al final
 
 
+
+        if (primero == null){                   //Si la lista es vacia agrega al principio
+            addFirst(valor);
+        } else{
+            Node<T> nodoNuevo = new Node<T>(valor);   //Si la lista no es vacia, solamente agrega seteando el siguiente del
+            ultimo.setSiguiente(nodoNuevo);     //ultimo y renueva el ultimo
+            ultimo = nodoNuevo;
+            size++;
+        }
+    }
+    private String visualize(String separacion){
+
+        Node<T> temp = primero;
+        String str = "";
+
+        while(temp != null){
+            str = str + (temp.getValor() + separacion);
+            temp = temp.getSiguiente();
+        }
+        str = str + "\n";
+        return str;
+    }
 
 }
