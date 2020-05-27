@@ -1,10 +1,10 @@
-+ PROYECTO OBLIGATORIO	
+PROYECTO OBLIGATORIO	
 
-+ Universidad de Montevideo
+Universidad de Montevideo
 	
-+ Programación 2 - 1er. Semestre 2020
+Programación 2 - 1er. Semestre 2020
 
-+ Prof.: D. Pereda
+Prof.: D. Pereda
 
  Grupo.:  R. D'Ambrosio		
  
