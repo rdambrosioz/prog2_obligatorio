@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="uy.edu.um.prog2.adt.queue.MyQueueTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-05-27T22:27:44" hostname="RA" time="0.008">
+  <properties/>
+  <testcase name="testEnqueue()" classname="uy.edu.um.prog2.adt.queue.MyQueueTest" time="0.0"/>
+  <testcase name="testVisualize()" classname="uy.edu.um.prog2.adt.queue.MyQueueTest" time="0.0"/>
+  <testcase name="testForEach()" classname="uy.edu.um.prog2.adt.queue.MyQueueTest" time="0.0"/>
+  <testcase name="testGetSize()" classname="uy.edu.um.prog2.adt.queue.MyQueueTest" time="0.0"/>
+  <testcase name="testEnqueueWithPriority()" classname="uy.edu.um.prog2.adt.queue.MyQueueTest" time="0.001"/>
+  <testcase name="testDequeue()" classname="uy.edu.um.prog2.adt.queue.MyQueueTest" time="0.001"/>
+  <testcase name="testIsEmpty()" classname="uy.edu.um.prog2.adt.queue.MyQueueTest" time="0.0"/>
+  <testcase name="testIterator()" classname="uy.edu.um.prog2.adt.queue.MyQueueTest" time="0.0"/>
+  <system-out><![CDATA[10 20 13 7 
+
+10
+20
+13
+7
+10
+20
+13
+7
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="uy.edu.um.prog2.adt.heap.MyHeapImplTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-05-27T22:27:44" hostname="RA" time="0.009">
+  <properties/>
+  <testcase name="testSize()" classname="uy.edu.um.prog2.adt.heap.MyHeapImplTest" time="0.002"/>
+  <testcase name="testToString()" classname="uy.edu.um.prog2.adt.heap.MyHeapImplTest" time="0.001"/>
+  <testcase name="testDeleteMax()" classname="uy.edu.um.prog2.adt.heap.MyHeapImplTest" time="0.001"/>
+  <testcase name="testGetMax()" classname="uy.edu.um.prog2.adt.heap.MyHeapImplTest" time="0.0"/>
+  <testcase name="testInsert()" classname="uy.edu.um.prog2.adt.heap.MyHeapImplTest" time="0.002"/>
+  <system-out><![CDATA[			50	
+	  	  45	33	
+	    38	8	11	19	
+15	
+
+			50	
+	  	  45	33	
+	    38	8	11	19	
+15	
+
+		45	
+	  38	33	
+15	8	11	19	
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

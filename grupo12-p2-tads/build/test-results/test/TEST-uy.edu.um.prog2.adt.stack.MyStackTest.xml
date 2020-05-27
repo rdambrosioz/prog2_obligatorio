@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="uy.edu.um.prog2.adt.stack.MyStackTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-05-27T22:27:44" hostname="RA" time="0.009">
+  <properties/>
+  <testcase name="testPop()" classname="uy.edu.um.prog2.adt.stack.MyStackTest" time="0.001"/>
+  <testcase name="testTop()" classname="uy.edu.um.prog2.adt.stack.MyStackTest" time="0.001"/>
+  <testcase name="testEmpty()" classname="uy.edu.um.prog2.adt.stack.MyStackTest" time="0.0"/>
+  <testcase name="testPush()" classname="uy.edu.um.prog2.adt.stack.MyStackTest" time="0.001"/>
+  <testcase name="testForEach()" classname="uy.edu.um.prog2.adt.stack.MyStackTest" time="0.001"/>
+  <testcase name="testToString()" classname="uy.edu.um.prog2.adt.stack.MyStackTest" time="0.0"/>
+  <testcase name="testGetSze()" classname="uy.edu.um.prog2.adt.stack.MyStackTest" time="0.0"/>
+  <testcase name="testIterator()" classname="uy.edu.um.prog2.adt.stack.MyStackTest" time="0.0"/>
+  <system-out><![CDATA[5
+4
+9
+37
+5 4 9 37 
+
+5
+4
+9
+37
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
