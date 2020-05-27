@@ -3,7 +3,7 @@ package uy.edu.um.prog2.adt.hash;
 import uy.edu.um.prog2.adt.hash.HashEntry;
 import uy.edu.um.prog2.adt.hash.MyHash;
 
-public class MyCloseHashImpl<K,T> implements MyHash<K,T> {
+public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
 
 
 
@@ -12,7 +12,7 @@ public class MyCloseHashImpl<K,T> implements MyHash<K,T> {
     private boolean linear;
 
 
-    public MyCloseHashImpl(int size, boolean linear){
+    public MyClosedHashImpl(int size, boolean linear){
         this.hashArray = (HashEntry<K,T>[]) new HashEntry[getNextPrimeNumber(size-1)];
         this.linear = linear;
         this.size = 0;
@@ -37,9 +37,13 @@ public class MyCloseHashImpl<K,T> implements MyHash<K,T> {
             position = getPosition(key,iterations);
         }
 
-
-        hashArray[position] = new HashEntry<>(key, value);
-        this.size++;
+        if (iterations <= hashArray.length) {
+            if (hashArray[position] != null && !hashArray[position].isDeleted()) {
+                this.size--;
+            }
+            hashArray[position] = new HashEntry<>(key, value);
+            this.size++;
+        }
 
 
 

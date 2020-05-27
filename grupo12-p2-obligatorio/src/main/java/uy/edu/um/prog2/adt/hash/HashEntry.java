@@ -30,6 +30,10 @@ public class HashEntry<K,T> {
         this.deleted = deleted;
     }
 
+    public void setValue(T value) {
+        this.value = value;
+    }
+
     @Override
     public boolean equals(Object obj) {
         boolean equalToReturn = false;

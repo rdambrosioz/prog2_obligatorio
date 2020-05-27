@@ -5,16 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyCloseLinearHashTest {
-
-
-
+class MyClosedCuadraticHashTest {
     private MyHash<ClienteNameHashKey, Cliente> myHash;
 
     @BeforeEach
     void setUp(){
-        myHash = new MyCloseHashImpl<>(2, true);
+        myHash = new MyClosedHashImpl<>(2, false);
     }
+
 
     @Test
     void testPut() {
@@ -22,11 +20,14 @@ class MyCloseLinearHashTest {
         Cliente cl2 = new Cliente(50047631l, 1866547l, "Pedro");
         Cliente cl3 = new Cliente(50047632l, 1866549l, "Jose");
         Cliente cl4 = new Cliente(50047633l, 1866550l, "Anuj");
+        Cliente cl5 = new Cliente(50047634l, 1866551l, "Ajnu");
 
         myHash.put(new ClienteNameHashKey(cl1.getName()), cl1);
         myHash.put(new ClienteNameHashKey(cl2.getName()), cl2);
         myHash.put(new ClienteNameHashKey(cl3.getName()), cl3);
         myHash.put(new ClienteNameHashKey(cl4.getName()), cl4);
+        myHash.put(new ClienteNameHashKey(cl5.getName()), cl5);
+
 
 
     }
@@ -52,7 +53,6 @@ class MyCloseLinearHashTest {
         assertNull(myHash.remove(new ClienteNameHashKey(cl4.getName())));
         myHash.put(new ClienteNameHashKey(cl5.getName()), cl5);
 
-
     }
 
     @Test
@@ -62,12 +62,14 @@ class MyCloseLinearHashTest {
         Cliente cl3 = new Cliente(50047632l, 1866549l, "Jose");
         Cliente cl4 = new Cliente(50047633l, 1866550l, "Anuj");
         Cliente cl5 = new Cliente(50047634l, 1866551l, "Ajnu");
+        Cliente cl6 = new Cliente(50047635l, 1866552l, "Juan");
 
         myHash.put(new ClienteNameHashKey(cl1.getName()), cl1);
         myHash.put(new ClienteNameHashKey(cl2.getName()), cl2);
         myHash.put(new ClienteNameHashKey(cl3.getName()), cl3);
         myHash.put(new ClienteNameHashKey(cl4.getName()), cl4);
         myHash.put(new ClienteNameHashKey(cl5.getName()), cl5);
+        myHash.put(new ClienteNameHashKey(cl6.getName()), cl6);
 
 
         assertEquals(cl2, myHash.get(new ClienteNameHashKey(cl2.getName())));
@@ -89,11 +91,13 @@ class MyCloseLinearHashTest {
         Cliente cl3 = new Cliente(50047632l, 1866549l, "Jose");
         Cliente cl4 = new Cliente(50047633l, 1866550l, "Anuj");
         Cliente cl5 = new Cliente(50047634l, 1866551l, "Ajnu");
+        Cliente cl6 = new Cliente(50047635l, 1866552l, "Juan");
 
         myHash.put(new ClienteNameHashKey(cl1.getName()), cl1);
         myHash.put(new ClienteNameHashKey(cl2.getName()), cl2);
         myHash.put(new ClienteNameHashKey(cl3.getName()), cl3);
         myHash.put(new ClienteNameHashKey(cl4.getName()), cl4);
+        myHash.put(new ClienteNameHashKey(cl6.getName()), cl6);
 
         assertEquals(4,myHash.size());
 
@@ -105,7 +109,6 @@ class MyCloseLinearHashTest {
         myHash.put(new ClienteNameHashKey(cl5.getName()), cl5);
 
         assertEquals(4,myHash.size());
-
     }
 
 }

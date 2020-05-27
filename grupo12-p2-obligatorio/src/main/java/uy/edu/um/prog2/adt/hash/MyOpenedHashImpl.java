@@ -4,12 +4,12 @@ import uy.edu.um.prog2.adt.exeptions.ListOutOfIndex;
 import uy.edu.um.prog2.adt.list.linkedlist.MyLinkedListImpl;
 import uy.edu.um.prog2.adt.list.MyList;
 
-public class MyOpenHashImpl<K,T> implements MyHash<K,T> {
+public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
 
     private MyList<HashEntry<K,T>>[] entryArray;
     private int size;
 
-    public MyOpenHashImpl(int size) {
+    public MyOpenedHashImpl(int size) {
         this.entryArray = new MyList[getNextPrimeNumber(size-1)];
         this.size = 0;
     }
@@ -32,8 +32,12 @@ public class MyOpenHashImpl<K,T> implements MyHash<K,T> {
         }
 
         HashEntry<K,T> hashEntry = new HashEntry<>(key, value);
+        HashEntry<K,T> hashSearch = listForPosition.getValue(hashEntry);
 
-        if (! listForPosition.contains(hashEntry)) {
+
+        if (hashSearch != null) {
+            hashSearch.setValue(value);
+        } else{
             listForPosition.add(hashEntry);
             this.size++;
         }
