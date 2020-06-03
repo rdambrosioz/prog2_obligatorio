@@ -1,9 +1,9 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group 'grupo12'
+version '1.0'
 
 sourceCompatibility = 1.8
 
@@ -27,4 +27,12 @@ test {
 
     }
 
+}
+
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': project.version)
+    }
 }

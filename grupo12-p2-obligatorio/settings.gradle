@@ -1,0 +1,4 @@
+rootProject.name = 'grupo12-p2-obligatorio'
+
+include ':grupo12-p2-tads'
+project(':grupo12-p2-tads').projectDir = file('..\\grupo12-p2-tads')
