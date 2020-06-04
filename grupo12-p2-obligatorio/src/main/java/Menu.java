@@ -2,14 +2,10 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public Menu() {
-        this.scanner = new Scanner(System.in);;
-    }
 
-    public int menuPrincipal (){
-
+    public static int menuPrincipal (){
 
         System.out.println("Seleccione la opción que desee:");
         System.out.println("\t1. Carga de datos");
@@ -22,7 +18,7 @@ public class Menu {
     }
 
 
-    public int menuConsultas(){
+    public static int menuConsultas(){
 
         System.out.println("\t1. Indicar el Top 10 de libros que más lecturas tienen por parte de usuarios.");
         System.out.println("\t2. Indicar el Top 20 de libros que más cantidad de lecturas tienen.");
@@ -36,7 +32,8 @@ public class Menu {
 
     }
 
-    private int scannOptionBetweenTwoInt(int min, int max){
+
+    private static int scannOptionBetweenTwoInt(int min, int max){
 
         int opcion = 0;
         boolean exit;
