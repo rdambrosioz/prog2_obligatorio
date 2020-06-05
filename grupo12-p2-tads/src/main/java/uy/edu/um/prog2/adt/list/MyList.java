@@ -1,6 +1,5 @@
 package uy.edu.um.prog2.adt.list;
 
-import uy.edu.um.prog2.adt.exeptions.EmptyList;
 import uy.edu.um.prog2.adt.exeptions.ListOutOfIndex;
 
 public interface MyList<T> extends Iterable<T> {
@@ -21,6 +20,6 @@ public interface MyList<T> extends Iterable<T> {
 
     int getSize();
 
-    void interchange(T valor, int direccion) throws EmptyList;
+
 
 }

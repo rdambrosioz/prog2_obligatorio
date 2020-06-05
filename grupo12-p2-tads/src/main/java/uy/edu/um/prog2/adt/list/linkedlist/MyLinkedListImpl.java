@@ -1,6 +1,5 @@
 package uy.edu.um.prog2.adt.list.linkedlist;
 
-import uy.edu.um.prog2.adt.exeptions.EmptyList;
 import uy.edu.um.prog2.adt.exeptions.EmptyQueue;
 import uy.edu.um.prog2.adt.exeptions.EmptyStack;
 import uy.edu.um.prog2.adt.exeptions.ListOutOfIndex;
@@ -204,71 +203,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     /**
      * OPERACIONES PARA OPEREAR CON DISTINTAS LISTAS
      */
-    @Override
-    public void interchange (T valor, int direccion) throws EmptyList {
-
-
-        if (size == 0){
-            throw new EmptyList();
-        }
-        else if (direccion == 1) {
-            Node<T> anterior = null;
-            Node<T> temp = primero;
-            boolean existe = false;
-            while (temp != null) {
-                if (temp.getValor().equals(valor)){
-                    existe = true;
-                    break;
-                }
-                anterior = temp;
-                temp = temp.getSiguiente();
-            }
-            if (existe && (temp != ultimo)) {
-                if (anterior == null) {
-                    Node<T> siguiente = temp.getSiguiente();
-                    temp.setSiguiente(siguiente.getSiguiente());
-                    siguiente.setSiguiente(temp);
-                    primero = siguiente;
-                } else {
-                    Node<T> siguiente = temp.getSiguiente();
-                    anterior.setSiguiente(siguiente);
-                    temp.setSiguiente(siguiente.getSiguiente());
-                    siguiente.setSiguiente(temp);
-                }
-                if (temp.getSiguiente() == null) {
-                    ultimo = temp;
-                }
-            }
-        } else if (direccion == -1){
-            Node<T> anterior1 = null;
-            Node<T> anterior2 = null;
-            Node<T> temp = primero;
-            boolean existe = false;
-            while (temp != null) {
-                if (temp.getValor().equals(valor)){
-                    existe = true;
-                    break;
-                }
-                anterior2 = anterior1;
-                anterior1 = temp;
-                temp = temp.getSiguiente();
-            }
-            if (existe && (temp!=primero)){
-                if (anterior2 == null){
-                    anterior1.setSiguiente(temp.getSiguiente());
-                    temp.setSiguiente(anterior1);
-                    primero = temp;
-                } else{
-                    anterior2.setSiguiente(temp);
-                    anterior1.setSiguiente(temp.getSiguiente());
-                    temp.setSiguiente(anterior1);
-                }
-                if (anterior1.getSiguiente() == null){
-                    ultimo = anterior1;
-                }
-            }
-        }
-    }
 
 
     /**

@@ -2,7 +2,6 @@ package uy.edu.um.prog2.adt.list;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import uy.edu.um.prog2.adt.exeptions.EmptyList;
 import uy.edu.um.prog2.adt.exeptions.ListOutOfIndex;
 import uy.edu.um.prog2.adt.list.linkedlist.MyLinkedListImpl;
 
@@ -10,7 +9,7 @@ import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MyListTest {
+class MyLinkedListTest {
 
     private MyList<Integer> myList;
 
@@ -140,32 +139,7 @@ class MyListTest {
         assertFalse(myList.contains(431));
     }
 
-    @Test
-    void testInterchange() {
-        assertThrows(EmptyList.class, () ->{
-            myList.interchange(10,1);
-        });
 
-        myList.add(10);
-        myList.add(12);
-        myList.add(17);
-        myList.add(26);
-
-        try {
-            myList.interchange(17,1);
-            myList.interchange(12,-1);
-            assertEquals(17,myList.get(3));
-            assertEquals(12,myList.get(0));
-        } catch (EmptyList emptyList) {
-            fail();
-            emptyList.printStackTrace();
-        } catch (ListOutOfIndex listOutOfIndex) {
-            fail();
-            listOutOfIndex.printStackTrace();
-        }
-
-
-    }
 
     @Test
     void testIterator() {
