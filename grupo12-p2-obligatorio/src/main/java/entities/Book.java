@@ -30,6 +30,9 @@ public class Book {
 
 
 
+    public void addAuthor(Author author){
+        this.authors.add(author);
+    }
 
     @Override
     public String toString() {

@@ -111,4 +111,12 @@ class MyClosedCuadraticHashTest {
         assertEquals(4,myHash.size());
     }
 
+
+    @Test
+    void testGet2(){
+        Cliente cl1 = new Cliente(50047630l, 1866546l, "Juan");
+        assertNull(myHash.get(new ClienteNameHashKey(cl1.getName())));
+
+    }
+
 }

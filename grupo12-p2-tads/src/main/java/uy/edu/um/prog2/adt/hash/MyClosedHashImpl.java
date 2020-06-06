@@ -74,12 +74,18 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
         T valueToReturn = null;
         int iterations = 0;
         int position = getPosition(key, iterations);
+
+
+        if (hashArray[position] == null){
+            return null;
+        }
+
         while (!(hashArray[position] == null || hashArray[position].getKey().equals(key) || iterations  > hashArray.length)) {
             iterations++;
             position = getPosition(key, iterations);
         }
 
-        if (iterations <= hashArray.length && !(hashArray[position].isDeleted())){
+        if (hashArray[position] != null && iterations < hashArray.length && !(hashArray[position].isDeleted())){
             valueToReturn = hashArray[position].getValue();
         }
         return valueToReturn;
@@ -106,6 +112,7 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
 
         HashEntry<K,T>[] oldHash = hashArray;
         this.hashArray = (HashEntry<K,T>[]) new HashEntry[newLength];
+        int oldSize = size;
 
         int updates = 0;
 
@@ -114,13 +121,13 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
                 put(oldHash[i].getKey(),oldHash[i].getValue());
                 updates++;
             }
-            if (updates >= size){
+            if (updates >= oldSize){
                 break;
             }
 
         }
-        this.size = updates;
 
+        this.size = oldSize;
     }
 
     private int getNextPrimeNumber(int number){

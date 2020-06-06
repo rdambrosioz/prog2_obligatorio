@@ -1,6 +1,6 @@
 package uy.edu.um.prog2.adt.exeptions;
 
-public class ListOutOfIndex extends Exception {
+public class ListOutOfIndex extends RuntimeException {
 
     private int indice;
 
