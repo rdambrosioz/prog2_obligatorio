@@ -145,9 +145,10 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     /**
      * AQUI SE ENCUENTRAN TODOS LOS DISTINTOS CODIGOS QUE PERMITEN OBETNER UN ELEMENTO DE LA LISTA
      * O CHECKEAR QUE UN ELEMENTO ESTE EN LA LISTA
+     * @return
      */
     @Override
-    public T get(int posicion) throws ListOutOfIndex {         //Devuelve el valor
+    public int get(int posicion) throws ListOutOfIndex {         //Devuelve el valor
         return devolverNodoPosicion(posicion).getValor();
     }
     @Override

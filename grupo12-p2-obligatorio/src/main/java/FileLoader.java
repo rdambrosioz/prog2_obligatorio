@@ -1,6 +1,7 @@
 import entities.Author;
 import entities.AuthorNameHashKey;
 import entities.Book;
+import entities.User;
 import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 import uy.edu.um.prog2.adt.hash.MyHash;
 import uy.edu.um.prog2.adt.list.MyArrayListImpl;
@@ -143,6 +144,28 @@ public class FileLoader {
 
         return authors;
     }
+    private static void loadUsersCSV(MyList<Book> booksList, MyHash<userid, User> authorsHash){  // Falta ratings
+        Path pathToFile = Paths.get("..\\to_read.csv");
+        MyList<String> reservedToRead = null;
+        User newUser = null;
+        Book newToRead = null;
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
+            String line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                MyList<String> arguments = parser(line,8);
+                newUser = new User(Long.parseLong(arguments.get(0)));
+             //   users = authorUsers(arguments.get(2));
+                usersHash.put(newUser);
+                newToRead = booksList.get(arguments.get(1));
+                newUser.reservedToRead.add(newToRead);
+            }
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
+    }
+
+
 
 
 

@@ -14,7 +14,7 @@ public interface MyList<T> extends Iterable<T> {
     T removeLast ();
     T removeValue (T valor);
 
-    T get (int posicion) throws ListOutOfIndex;
+    int get (int posicion) throws ListOutOfIndex;
     T getValue (T valueToSearch);
 
 

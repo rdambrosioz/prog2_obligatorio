@@ -1,6 +1,7 @@
 import entities.Author;
 import entities.AuthorNameHashKey;
 import entities.Book;
+import entities.User;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyHash;
 import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
@@ -14,12 +15,14 @@ public class Queries {
 
     private MyList<Book> booksList;
     private MyHash<AuthorNameHashKey, Author> authorsHash;
+    private MyHash<userId, User> usersHash;
 
 
 
     public Queries() {
         this.booksList = new MyArrayListImpl<>(10001);
         this.authorsHash = new MyClosedHashImpl<>(12000, false);
+        this.usersHash = new MyClosedHashImpl<>(60000,false);
     }
 
     public MyList<Book> getBooksList() {

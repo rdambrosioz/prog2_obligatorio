@@ -116,7 +116,7 @@ public class MyArrayListImpl<T> implements MyList<T> {
     }
 
     @Override
-    public T get(int posicion) throws ListOutOfIndex {
+    public int get(int posicion) throws ListOutOfIndex {
         if (posicion >= pointerToLastValue){
             throw new ListOutOfIndex(pointerToLastValue);
         }

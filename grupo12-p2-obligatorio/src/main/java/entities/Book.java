@@ -14,6 +14,7 @@ public class Book {
     private String title;
     private String languageCode;
     private String imageUrl;
+    private int bookings;
 
     private MyList<Author> authors;
 
@@ -26,6 +27,8 @@ public class Book {
         this.title = title;
         this.languageCode = language_code;
         this.imageUrl = imageUrl;
+        this.bookings = 0;
+
     }
 
 
