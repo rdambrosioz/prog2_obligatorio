@@ -1,7 +1,4 @@
-import entities.Author;
-import entities.AuthorNameHashKey;
-import entities.Book;
-import entities.User;
+import entities.*;
 import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 import uy.edu.um.prog2.adt.hash.MyHash;
 import uy.edu.um.prog2.adt.list.MyArrayListImpl;
@@ -144,21 +141,27 @@ public class FileLoader {
 
         return authors;
     }
-    private static void loadUsersCSV(MyList<Book> booksList, MyHash<userid, User> authorsHash){  // Falta ratings
+    private static void loadUsersCSV(MyList<Book> booksList, MyHash<UserNameHashKey, User> usersHash){  // Falta ratings
         Path pathToFile = Paths.get("..\\to_read.csv");
-        MyList<String> reservedToRead = null;
         User newUser = null;
         Book newToRead = null;
-
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
             String line = br.readLine();
             while ((line = br.readLine()) != null) {
-                MyList<String> arguments = parser(line,8);
-                newUser = new User(Long.parseLong(arguments.get(0)));
-             //   users = authorUsers(arguments.get(2));
-                usersHash.put(newUser);
-                newToRead = booksList.get(arguments.get(1));
-                newUser.reservedToRead.add(newToRead);
+                MyList<String> arguments = parser(line,2);
+                UserNameHashKey key =  new UserNameHashKey(Long.parseLong(arguments.get(0)));
+                newUser = usersHash.get(key);
+                if (newUser == null){
+                    newUser = new User(Long.parseLong(arguments.get(0)));
+                    usersHash.put(key,newUser);
+                    newToRead = booksList.get(Integer.parseInt(arguments.get(1)));
+                    newToRead.incrementBooking();
+                    newUser.getReservedToRead().add(newToRead);
+                } else {
+                    newToRead = booksList.get(Integer.parseInt(arguments.get(1)));
+                    newToRead.incrementBooking();
+                    newUser.getReservedToRead().add(newToRead);
+                }
             }
         } catch (IOException error) {
             error.printStackTrace();

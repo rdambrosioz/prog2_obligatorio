@@ -148,7 +148,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
      * @return
      */
     @Override
-    public int get(int posicion) throws ListOutOfIndex {         //Devuelve el valor
+    public T get(int posicion) throws ListOutOfIndex {         //Devuelve el valor
         return devolverNodoPosicion(posicion).getValor();
     }
     @Override

@@ -49,5 +49,8 @@ public class Book {
                 "image_url: " + imageUrl + "\n" +
                 "\n\n";
     }
+    public void incrementBooking(){
+        bookings++;
+    }
 
 }

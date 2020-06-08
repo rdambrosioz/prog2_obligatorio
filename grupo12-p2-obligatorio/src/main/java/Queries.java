@@ -1,7 +1,4 @@
-import entities.Author;
-import entities.AuthorNameHashKey;
-import entities.Book;
-import entities.User;
+import entities.*;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyHash;
 import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
@@ -15,7 +12,7 @@ public class Queries {
 
     private MyList<Book> booksList;
     private MyHash<AuthorNameHashKey, Author> authorsHash;
-    private MyHash<userId, User> usersHash;
+    private MyHash<UserNameHashKey, User> usersHash;
 
 
 
