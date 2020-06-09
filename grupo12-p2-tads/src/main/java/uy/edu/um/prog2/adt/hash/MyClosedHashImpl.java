@@ -10,31 +10,41 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
     private HashEntry<K,T>[] hashArray;
     private int size;
     private boolean linear;
+    private float chargeFactor;
 
 
     public MyClosedHashImpl(int size, boolean linear){
         this.hashArray = (HashEntry<K,T>[]) new HashEntry[getNextPrimeNumber(size-1)];
         this.linear = linear;
         this.size = 0;
+        this.chargeFactor = 0.5f;
     }
 
 
-
+    public MyClosedHashImpl(int size, boolean linear, float chargeFactor) {
+        this.hashArray = (HashEntry<K,T>[]) new HashEntry[getNextPrimeNumber(size-1)];
+        this.size = 0;
+        this.linear = linear;
+        this.chargeFactor = chargeFactor;
+    }
 
     @Override
     public void put(K key, T value) {
 
-        if (((float) this.size + 1) / ((float) hashArray.length) > 0.5 ){
+        if (((float) this.size + 1) / ((float) hashArray.length) > this.chargeFactor ){
             this.reHashing();
         }
 
 
         int iterations = 0;
-        int position = getPosition(key, iterations);
+        int keyHash = key.hashCode();
+
+        int position = getPosition(keyHash, iterations);
 
         while (!(hashArray[position] == null || hashArray[position].getKey().equals(key) || iterations  > hashArray.length || hashArray[position].isDeleted() ) ) {
             iterations++;
-            position = getPosition(key,iterations);
+            position = getPosition(keyHash,iterations);
+
         }
 
         if (iterations <= hashArray.length) {
@@ -54,11 +64,13 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
     public T remove(K key) {
         T valueToReturn = null;
         int iterations = 0;
-        int position = getPosition(key, iterations);
+        int keyHash = key.hashCode();
+
+        int position = getPosition(keyHash, iterations);
 
         while (!(hashArray[position] == null || hashArray[position].getKey().equals(key) || iterations  > hashArray.length || hashArray[position].isDeleted())) {
             iterations++;
-            position = getPosition(key, iterations);
+            position = getPosition(keyHash, iterations);
         }
 
         if (iterations <= hashArray.length && !(hashArray[position] == null) && !(hashArray[position].isDeleted())){
@@ -73,7 +85,9 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
     public T get(K key) {
         T valueToReturn = null;
         int iterations = 0;
-        int position = getPosition(key, iterations);
+        int keyHash = key.hashCode();
+
+        int position = getPosition(keyHash, iterations);
 
 
         if (hashArray[position] == null){
@@ -82,7 +96,7 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
 
         while (!(hashArray[position] == null || hashArray[position].getKey().equals(key) || iterations  > hashArray.length)) {
             iterations++;
-            position = getPosition(key, iterations);
+            position = getPosition(keyHash, iterations);
         }
 
         if (hashArray[position] != null && iterations < hashArray.length && !(hashArray[position].isDeleted())){
@@ -96,12 +110,12 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
         return this.size;
     }
 
-    private int getPosition(K key, int iterations){
+    private int getPosition(int keyHash, int iterations){
         int position = 0;
         if (linear){
-            position = (key.hashCode() % hashArray.length + iterations) % hashArray.length;
+            position = (keyHash % hashArray.length + iterations) % hashArray.length;
         }else{
-            position = (key.hashCode() % hashArray.length + (int) Math.pow(iterations,2)) % hashArray.length;
+            position = (keyHash % hashArray.length + (int) Math.pow(iterations,2)) % hashArray.length;
         }
         return position;
     }
@@ -153,5 +167,6 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
 
         return isNotPrime;
     }
+
 
 }

@@ -17,11 +17,12 @@ public class AuthorNameHashKey {
 
     @Override
     public int hashCode() {
-        int hashCode = 3;
-        for (int i=0;i < this.name.length(); i++){
-            hashCode = hashCode*31 + this.name.charAt(i);
-        }
-        return Math.abs(hashCode);
+//        int hashCode = 3;
+//        for (int i=0;i < this.name.length(); i++){
+//            hashCode = hashCode*31 + this.name.charAt(i);
+//        }
+//        return Math.abs(hashCode);
+        return Math.abs(Objects.hash(this.name));
     }
 
 

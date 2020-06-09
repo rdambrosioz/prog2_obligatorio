@@ -1,3 +1,4 @@
+import com.sun.imageio.spi.RAFImageInputStreamSpi;
 import entities.*;
 import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 import uy.edu.um.prog2.adt.hash.MyHash;
@@ -18,18 +19,20 @@ public class FileLoader {
 
 
 
-    public static void loadData(MyList<Book> booksList, MyHash<AuthorNameHashKey, Author> authorsHash){
+    public static void loadData(MyList<Book> booksList, MyHash<AuthorNameHashKey, Author> authorsHash, MyHash<UserNameHashKey,User> usersHash, MyHash<Rating, Rating> ratingsHash){
 
         loadBooksCSV(booksList, authorsHash);
-
+        loadUsersCSV(booksList, usersHash);
+        loadRatingsCSV(booksList,usersHash,ratingsHash);
 
     }
 
-    private static void loadBooksCSV(MyList<Book> booksList, MyHash<AuthorNameHashKey, Author> authorsHash){
+    private static void loadBooksCSV(MyList<Book> booksList, MyHash<AuthorNameHashKey,Author> authorsHash){
         Path pathToFile = Paths.get("..\\books.csv");
         MyList<String> authors = null;
         Book newBook = null;
         Author newAuthor = null;
+        AuthorNameHashKey key = null;
         Integer yearOfPublication = null;
 
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
@@ -53,10 +56,11 @@ public class FileLoader {
                 authors = authorParser(arguments.get(2));
 
                 for(String author : authors){
-                    newAuthor = authorsHash.get(new AuthorNameHashKey(author));
+                    key = new AuthorNameHashKey(author);
+                    newAuthor = authorsHash.get(key);
                     if (newAuthor == null){
                         newAuthor = new Author(author);
-                        authorsHash.put(new AuthorNameHashKey(author), newAuthor);
+                        authorsHash.put(key, newAuthor);
                     }
                     newBook.addAuthor(newAuthor);
                 }
@@ -70,8 +74,89 @@ public class FileLoader {
     }
 
 
+    private static void loadUsersCSV(MyList<Book> booksList, MyHash<UserNameHashKey,User> usersHash){  // Falta ratings
+        Path pathToFile = Paths.get("..\\to_read.csv");
+        User newUser = null;
+        UserNameHashKey key = null;
+        Book newToRead = null;
+        Long userId = null;
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
+
+            String line = br.readLine();
+
+            while ((line = br.readLine()) != null) {
+
+                MyList<String> arguments = parser(line,2);
+                userId = Long.parseLong(arguments.get(0));
+                key =  new UserNameHashKey(userId);
+                newUser = usersHash.get(key);
+
+                if (newUser == null){
+                    newUser = new User(userId);
+                    usersHash.put(key,newUser);
+                }
 
 
+                newToRead = booksList.get((Integer.parseInt(arguments.get(1)))-1);
+
+                newToRead.incrementBookings();
+
+                newUser.getReservedToRead().add(newToRead);
+
+            }
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
+    }
+
+    private static void loadRatingsCSV(MyList<Book> booksList, MyHash<UserNameHashKey,User> usersHash, MyHash<Rating, Rating> ratingsHash){
+        Path pathToFile = Paths.get("..\\ratings.csv");
+
+        Book book = null;
+        User user = null;
+        UserNameHashKey key = null;
+        Rating newRating = null;
+        Rating rating = null;
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
+            String line = br.readLine();
+
+            while ((line = br.readLine()) != null) {
+
+                MyList<String> arguments = parser(line,3);
+
+                try {
+                    book = booksList.get(Integer.parseInt(arguments.get(1)) - 1);
+                } catch (Exception error){
+                    break;
+                }
+                key = new UserNameHashKey(Long.parseLong(arguments.get(0)));
+                user = usersHash.get(key);
+
+                if (user == null){
+                    user = new User(Long.parseLong(arguments.get(0)));
+                    usersHash.put(key, user);
+                }
+
+                newRating = new Rating(Integer.parseInt(arguments.get(2)), book);
+                rating = ratingsHash.get(newRating);
+
+                if (rating == null){
+                    rating = newRating;
+                    ratingsHash.put(rating,rating);
+                }
+
+                book.incrementReviews();
+                user.getRatings().add(rating);
+
+
+            }
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
+
+    }
 
     private static MyList<String> parser(String line, int args){
 
@@ -141,32 +226,8 @@ public class FileLoader {
 
         return authors;
     }
-    private static void loadUsersCSV(MyList<Book> booksList, MyHash<UserNameHashKey, User> usersHash){  // Falta ratings
-        Path pathToFile = Paths.get("..\\to_read.csv");
-        User newUser = null;
-        Book newToRead = null;
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
-            String line = br.readLine();
-            while ((line = br.readLine()) != null) {
-                MyList<String> arguments = parser(line,2);
-                UserNameHashKey key =  new UserNameHashKey(Long.parseLong(arguments.get(0)));
-                newUser = usersHash.get(key);
-                if (newUser == null){
-                    newUser = new User(Long.parseLong(arguments.get(0)));
-                    usersHash.put(key,newUser);
-                    newToRead = booksList.get(Integer.parseInt(arguments.get(1)));
-                    newToRead.incrementBooking();
-                    newUser.getReservedToRead().add(newToRead);
-                } else {
-                    newToRead = booksList.get(Integer.parseInt(arguments.get(1)));
-                    newToRead.incrementBooking();
-                    newUser.getReservedToRead().add(newToRead);
-                }
-            }
-        } catch (IOException error) {
-            error.printStackTrace();
-        }
-    }
+
+
 
 
 

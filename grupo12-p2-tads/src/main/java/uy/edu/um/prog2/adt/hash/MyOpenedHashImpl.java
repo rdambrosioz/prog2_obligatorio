@@ -26,9 +26,12 @@ public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
 
         MyList<HashEntry<K,T>> listForPosition = entryArray[position];
 
+
+
         if (listForPosition == null){
             listForPosition = new MyLinkedListImpl<>();
             entryArray[position] = listForPosition;
+
         }
 
         HashEntry<K,T> hashEntry = new HashEntry<>(key, value);
@@ -140,4 +143,6 @@ public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
 
         return isNotPrime;
     }
+
+
 }

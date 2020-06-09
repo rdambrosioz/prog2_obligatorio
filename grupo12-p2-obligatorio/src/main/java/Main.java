@@ -1,4 +1,5 @@
-
+import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
+import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
 
 public class Main {
 
@@ -18,9 +19,11 @@ public class Main {
                     time = System.currentTimeMillis();
                     queriesData = new Queries();
                     queriesData.loadData();
-                    System.out.println("El tiempo de carga de datos fue de: " + (System.currentTimeMillis() - time));
-                    System.out.println("La cantidad de libros es de: " + queriesData.getBooksList().getSize());
-                    System.out.println("La cantidad de autores es de: " + queriesData.getAuthorsHash().size());
+                    System.out.println("El tiempo de carga de datos fue: " + (System.currentTimeMillis() - time) + " segundos" + "\n");
+                    System.out.println("La cantidad de libros es: " + queriesData.getBooksList().getSize());
+                    System.out.println("La cantidad de autores es: " + queriesData.getAuthorsHash().size());
+                    System.out.println("La cantidad de usuarios es: " + queriesData.getUsersHash().size());
+                    System.out.println("La cantidad de ratings es: " + queriesData.getRatingsHash().size());
                     break;
                 case 2:
                     do {

@@ -14,7 +14,8 @@ public class Book {
     private String title;
     private String languageCode;
     private String imageUrl;
-    private int bookings;
+    private Integer bookings;
+    private Integer reviews;
 
     private MyList<Author> authors;
 
@@ -28,13 +29,25 @@ public class Book {
         this.languageCode = language_code;
         this.imageUrl = imageUrl;
         this.bookings = 0;
-
+        this.reviews = 0;
     }
 
 
 
     public void addAuthor(Author author){
         this.authors.add(author);
+    }
+
+    public void incrementBookings(){
+        this.bookings++;
+    }
+
+    public void incrementReviews(){
+        this.reviews++;
+    }
+
+    public Long getBookId() {
+        return bookId;
     }
 
     @Override
@@ -49,8 +62,4 @@ public class Book {
                 "image_url: " + imageUrl + "\n" +
                 "\n\n";
     }
-    public void incrementBooking(){
-        bookings++;
-    }
-
 }
