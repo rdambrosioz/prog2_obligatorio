@@ -60,26 +60,27 @@ public class Queries {
 
 
 
-    public void topRaters(){
+    public MyList<User> topRaters(){
+
         MyList<User> usersList = this.usersHash.getValues();
-
-        //MyHeap<User> usersHeap = new MyHeapImpl<>(usersList.getSize());
-
         MyHeap<User> usersHeap = new MyHeapImpl<>(usersList.getSize());
-
-        System.out.println(usersList.getSize());
+        MyList<User> top10 = new MyArrayListImpl<>(10);
 
 
         for (User user : usersList){
             usersHeap.insert(user);
         }
 
-        System.out.println(usersHeap.size());
+
 
         for (int i = 0; i<10; i++){
-            System.out.println(usersHeap.deleteMax());
+            top10.add(usersHeap.deleteMax());
         }
 
-        System.out.println(usersHeap.size());
+        //FIXME Falta sorting para oderdenar los 10
+
+        return top10;
+
+
     }
 }

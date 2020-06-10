@@ -1,5 +1,7 @@
+import entities.User;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
+import uy.edu.um.prog2.adt.list.MyList;
 
 public class Main {
 
@@ -33,8 +35,11 @@ public class Main {
                         switch (consulta){
                             case 3:
                                 time = System.currentTimeMillis();
-                                queriesData.topRaters();
+                                MyList<User> top10 = queriesData.topRaters();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
+                                for (User user : top10){
+                                    System.out.println(user);
+                                }
                         }
                     } while (consulta != 6);
 
