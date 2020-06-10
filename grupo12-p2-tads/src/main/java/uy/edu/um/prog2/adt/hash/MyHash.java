@@ -1,5 +1,7 @@
 package uy.edu.um.prog2.adt.hash;
 
+import uy.edu.um.prog2.adt.list.MyList;
+
 public interface MyHash<K,T> {
 
 
@@ -10,4 +12,7 @@ public interface MyHash<K,T> {
     T get(K key);
 
     int size();
+
+    MyList<T> getValues();
+
 }

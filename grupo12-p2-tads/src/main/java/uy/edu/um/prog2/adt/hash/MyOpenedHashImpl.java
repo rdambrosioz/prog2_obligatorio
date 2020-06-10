@@ -88,6 +88,11 @@ public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
         return this.size;
     }
 
+    @Override
+    public MyList<T> getValues() {
+        return null;
+    }
+
 
     private void reHashing(){
 

@@ -53,8 +53,9 @@ class MyHeapImplTest {
         myHeap.insert(38);
         myHeap.insert(8);
         myHeap.insert(11);
-        myHeap.insert(19);
+        myHeap.insert(45);
         myHeap.insert(50);
+
         System.out.println(myHeap);
 
         assertEquals(50, myHeap.deleteMax());

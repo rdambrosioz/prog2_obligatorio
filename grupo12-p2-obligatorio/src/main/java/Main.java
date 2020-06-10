@@ -19,15 +19,23 @@ public class Main {
                     time = System.currentTimeMillis();
                     queriesData = new Queries();
                     queriesData.loadData();
-                    System.out.println("El tiempo de carga de datos fue: " + (System.currentTimeMillis() - time) + " segundos" + "\n");
+                    System.out.println("El tiempo de carga de datos fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
                     System.out.println("La cantidad de libros es: " + queriesData.getBooksList().getSize());
+                    System.out.println("La cantidad de idiomas es: " + queriesData.getLanguagesHash().size());
                     System.out.println("La cantidad de autores es: " + queriesData.getAuthorsHash().size());
                     System.out.println("La cantidad de usuarios es: " + queriesData.getUsersHash().size());
                     System.out.println("La cantidad de ratings es: " + queriesData.getRatingsHash().size());
+
                     break;
                 case 2:
                     do {
                         consulta = Menu.menuConsultas();
+                        switch (consulta){
+                            case 3:
+                                time = System.currentTimeMillis();
+                                queriesData.topRaters();
+                                System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
+                        }
                     } while (consulta != 6);
 
                 case 3:

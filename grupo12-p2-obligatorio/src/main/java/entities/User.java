@@ -5,23 +5,23 @@ import uy.edu.um.prog2.adt.list.linkedlist.MyLinkedListImpl;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Comparable<User> {
 
-    private Long userId;
+    private long userId;
     private MyList<Book> reservedToRead;
     private MyList<Rating> ratings;
 
 
 
 
-    public User(Long userId) {
+    public User(long userId) {
         this.userId = userId;
         this.reservedToRead = new MyLinkedListImpl<>();
         this.ratings = new MyLinkedListImpl<>();
     }
 
 
-    public Long getUserId() {
+    public long getUserId() {
         return userId;
     }
 
@@ -35,9 +35,13 @@ public class User {
 
 
 
+    public int allRatingsSize(){
+        return this.ratings.getSize();
+    }
+
     @Override
     public int hashCode() {
-        return userId.intValue();
+        return (int) userId;
     }
 
     @Override
@@ -48,4 +52,24 @@ public class User {
         return Objects.equals(userId, user.userId);
     }
 
+    @Override
+    public int compareTo(User o) {
+        int value = -1;
+
+        int thisSize = this.allRatingsSize();
+        int otherSize = o.allRatingsSize();
+        if (thisSize == otherSize){
+            value = 0;
+        } else if (thisSize > otherSize){
+            value = 1;
+        }
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return "User: " + userId + "\n" +
+                "Cantidad: " + allRatingsSize() + "\n" +
+                "Rating promedio: " + "\n" ;
+    }
 }

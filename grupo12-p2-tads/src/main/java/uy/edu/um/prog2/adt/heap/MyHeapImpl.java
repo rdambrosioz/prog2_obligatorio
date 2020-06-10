@@ -57,7 +57,7 @@ public class MyHeapImpl<T extends Comparable<T>> implements MyHeap<T> {
         int lastValue = getFatherPosition(pointerLastValue-1);
         while(position < lastValue && (tempValue.compareTo(getFirstChild(position)) < 0 || tempValue.compareTo(getSecondChild(position)) < 0)){
 
-            if (getFirstChild(position).compareTo(getSecondChild(position)) > 0){
+            if (getFirstChild(position).compareTo(getSecondChild(position)) >= 0){
                 tempValue = this.values[position];
                 this.values[position] = this.values[getChildPosition(position)];
                 this.values[getChildPosition(position)] = tempValue;
@@ -65,7 +65,7 @@ public class MyHeapImpl<T extends Comparable<T>> implements MyHeap<T> {
             } else{
                 tempValue = this.values[position];
                 this.values[position] = this.values[getChildPosition(position)+1];
-                this.values[getChildPosition(position)] = tempValue;
+                this.values[getChildPosition(position)+1] = tempValue;
                 position = getChildPosition(position)+1;
             }
 

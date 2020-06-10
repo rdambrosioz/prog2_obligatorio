@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Rating {
 
-    private Integer rating;
+    private int rating;
 
     private Book book;
 
@@ -24,7 +24,7 @@ public class Rating {
 
     @Override
     public int hashCode() {
-        return ((book.getBookId().intValue()-1)*5) + rating;
+        return (((int) book.getBookId() - 1)*5) + rating;
     }
 
 

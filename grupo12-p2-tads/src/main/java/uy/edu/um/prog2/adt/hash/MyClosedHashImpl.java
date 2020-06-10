@@ -2,6 +2,8 @@ package uy.edu.um.prog2.adt.hash;
 
 import uy.edu.um.prog2.adt.hash.HashEntry;
 import uy.edu.um.prog2.adt.hash.MyHash;
+import uy.edu.um.prog2.adt.list.MyArrayListImpl;
+import uy.edu.um.prog2.adt.list.MyList;
 
 public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
 
@@ -108,6 +110,22 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
     @Override
     public int size() {
         return this.size;
+    }
+
+    @Override
+    public MyList<T> getValues() {
+        int updates = 0;
+        MyList<T> list = new MyArrayListImpl<>(size);
+        for (int i = 0; i<this.hashArray.length; i++){
+            if (hashArray[i] != null && !hashArray[i].isDeleted()){
+                list.add(hashArray[i].getValue());
+                updates++;
+            }
+            if (updates == this.size){
+                break;
+            }
+        }
+        return list;
     }
 
     private int getPosition(int keyHash, int iterations){
