@@ -19,22 +19,24 @@ public class FileLoader {
 
 
 
-    public static void loadData(MyList<Book> booksList, MyHash<Language,Language> languages, MyHash<AuthorNameHashKey, Author> authorsHash, MyHash<UserNameHashKey,User> usersHash, MyHash<Rating, Rating> ratingsHash){
+    public static void loadData(MyList<Book> booksList, MyHash<Language,Language> languages, MyHash<Author, Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash, MyHash<User,User> usersHash){
 
-        loadBooksCSV(booksList, languages, authorsHash);
+        loadBooksCSV(booksList, languages, authorsHash, authorsPublicationsHash);
         loadUsersCSV(booksList, usersHash);
-        loadRatingsCSV(booksList,usersHash,ratingsHash);
+        loadRatingsCSV(booksList,usersHash);
 
     }
 
-    private static void loadBooksCSV(MyList<Book> booksList, MyHash<Language, Language> languages, MyHash<AuthorNameHashKey,Author> authorsHash){
+    private static void loadBooksCSV(MyList<Book> booksList, MyHash<Language, Language> languages, MyHash<Author,Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash){
         Path pathToFile = Paths.get("..\\books.csv");
         MyList<String> authors = null;
         Book newBook = null;
         Author newAuthor = null;
-        AuthorNameHashKey key = null;
+        Author author = null;
         Integer yearOfPublication = null;
         Language language = null;
+        AuthorPublications newPublication = null;
+        AuthorPublications publication = null;
 
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
             String line = br.readLine();
@@ -57,14 +59,26 @@ public class FileLoader {
 
                 authors = authorParser(arguments.get(2));
 
-                for(String author : authors){
-                    key = new AuthorNameHashKey(author);
-                    newAuthor = authorsHash.get(key);
-                    if (newAuthor == null){
-                        newAuthor = new Author(author);
-                        authorsHash.put(key, newAuthor);
+                for(String authorName : authors){
+                    newAuthor = new Author(authorName);
+                    author = authorsHash.get(newAuthor);
+
+                    if (author == null){
+                        author = newAuthor;
+                        authorsHash.put(author, author);
                     }
-                    newBook.addAuthor(newAuthor);
+
+                    newBook.addAuthor(author);
+
+                    if (yearOfPublication != null) {
+                        newPublication = new AuthorPublications(author, yearOfPublication);
+                        publication = authorsPublicationsHash.get(newPublication);
+                        if (publication == null) {
+                            publication = newPublication;
+                            authorsPublicationsHash.put(publication, publication);
+                        }
+                        publication.addBook(newBook);
+                    }
                 }
 
                 booksList.add(newBook);
@@ -73,12 +87,13 @@ public class FileLoader {
         } catch (IOException error) {
             error.printStackTrace();
         }
+        System.gc();
     }
 
-    private static void loadUsersCSV(MyList<Book> booksList, MyHash<UserNameHashKey,User> usersHash){  // Falta ratings
+    private static void loadUsersCSV(MyList<Book> booksList, MyHash<User,User> usersHash){  // Falta ratings
         Path pathToFile = Paths.get("..\\to_read.csv");
         User newUser = null;
-        UserNameHashKey key = null;
+        User user = null;
         Book newToRead = null;
         Long userId = null;
 
@@ -90,30 +105,30 @@ public class FileLoader {
 
                 MyList<String> arguments = parser(line,2);
                 userId = Long.parseLong(arguments.get(0));
-                key =  new UserNameHashKey(userId);
-                newUser = usersHash.get(key);
+                newUser =  new User(userId);
+                user = usersHash.get(newUser);
 
-                if (newUser == null){
-                    newUser = new User(userId);
-                    usersHash.put(key,newUser);
+                if (user == null){
+                    user = newUser;
+                    usersHash.put(user,user);
                 }
                 newToRead = booksList.get((Integer.parseInt(arguments.get(1)))-1);
 
-                newToRead.addBooking(newUser);
+                newToRead.addBooking(user);
             }
         } catch (IOException error) {
             error.printStackTrace();
         }
+        System.gc();
     }
 
-    private static void loadRatingsCSV(MyList<Book> booksList, MyHash<UserNameHashKey,User> usersHash, MyHash<Rating, Rating> ratingsHash){
+    private static void loadRatingsCSV(MyList<Book> booksList, MyHash<User,User> usersHash){
         Path pathToFile = Paths.get("..\\ratings.csv");
 
         Book book = null;
         User user = null;
-        UserNameHashKey key = null;
-        Rating newRating = null;
-        Rating rating = null;
+        User newUser = null;
+
 
         try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
             String line = br.readLine();
@@ -125,31 +140,24 @@ public class FileLoader {
                 try {
                     book = booksList.get(Integer.parseInt(arguments.get(1)) - 1);
                 } catch (Exception error){
-                    break;
+                    error.printStackTrace();
                 }
-                key = new UserNameHashKey(Long.parseLong(arguments.get(0)));
-                user = usersHash.get(key);
+
+                newUser = new User(Long.parseLong(arguments.get(0)));
+                user = usersHash.get(newUser);
 
                 if (user == null){
-                    user = new User(Long.parseLong(arguments.get(0)));
-                    usersHash.put(key, user);
+                    user = newUser;
+                    usersHash.put(user, user);
                 }
 
-                newRating = new Rating(Integer.parseInt(arguments.get(2)), book);
-                rating = ratingsHash.get(newRating);
-
-                if (rating == null){
-                    rating = newRating;
-                    ratingsHash.put(rating,rating);
-                }
-
-                user.getRatings().add(rating);
-
+                user.addRated(book,Integer.parseInt(arguments.get(2)));
 
             }
         } catch (IOException error) {
             error.printStackTrace();
         }
+        System.gc();
 
     }
 
@@ -249,7 +257,7 @@ public class FileLoader {
                 languageCode = "French";
                 break;
             case "ind":
-                languageCode = "Indian";
+                languageCode = "Indonesian";
                 break;
             case "spa":
                 languageCode = "Spanish";
@@ -264,7 +272,7 @@ public class FileLoader {
                 languageCode = "Japanese";
                 break;
             case "por":
-                languageCode = "Portugese";
+                languageCode = "Portuguese";
                 break;
             case "pol":
                 languageCode = "Polish";
@@ -276,19 +284,19 @@ public class FileLoader {
                 languageCode = "Italian";
                 break;
             case "fil":
-                languageCode = "Filipinian";
+                languageCode = "Filipino";
                 break;
             case "rus":
-                languageCode = "Englsh";
+                languageCode = "Russian";
                 break;
             case "mul":
-                languageCode = "Muslims";
+                languageCode = "Multiple Languages";
                 break;
             case "rum":
-                languageCode = "Rumanish";
+                languageCode = "Romanian";
                 break;
             case "swe":
-                languageCode = "Swdish";
+                languageCode = "Swedish";
                 break;
             case "nl":
                 languageCode = "Dutch";
@@ -303,7 +311,6 @@ public class FileLoader {
                 languageCode = "Vietnamese";
                 break;
             default:
-
                 languageCode = "Otro";
         }
 

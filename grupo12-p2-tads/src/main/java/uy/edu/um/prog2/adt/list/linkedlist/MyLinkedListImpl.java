@@ -196,6 +196,19 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     public int getSize() {
         return size;
     }
+
+    @Override
+    public T[] toArray() {
+        T[] array = (T[]) new Object[this.size];
+        Node<T> temp = primero;
+        for (int i=0; i<this.size; i++){
+            array[i] = temp.getValor();
+            temp = temp.getSiguiente();
+        }
+        return array;
+
+    }
+
     @Override
     public String toString() {
         return visualize(" ");

@@ -142,6 +142,15 @@ public class MyArrayListImpl<T> implements MyList<T> {
         return pointerToLastValue;
     }
 
+    @Override
+    public T[] toArray() {
+        T[] array = (T[]) new Object[pointerToLastValue];
+        for (int i=0; i<pointerToLastValue; i++){
+            array[i] = this.array[i];
+        }
+        return array;
+    }
+
 
     @Override
     public Iterator<T> iterator() {

@@ -17,7 +17,7 @@ public class Author {
 
     @Override
     public boolean equals(Object o) {
-        //if (this == o) return true;
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
         return Objects.equals(name, author.name);
@@ -27,15 +27,16 @@ public class Author {
 
     @Override
     public int hashCode() {
-        int hashCode = 3;
-        for (int i=0;i < this.name.length(); i++){
-            hashCode = hashCode*31 + this.name.charAt(i);
-        }
-        return Math.abs(hashCode);
+//        int hashCode = 3;
+//        for (int i=0;i < this.name.length(); i++){
+//            hashCode = hashCode*31 + this.name.charAt(i);
+//        }
+//        return Math.abs(hashCode);
+        return Math.abs(Objects.hash(this.name));
     }
 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(name);
-//    }
+    @Override
+    public String toString() {
+        return name;
+    }
 }
