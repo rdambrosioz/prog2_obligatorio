@@ -1,3 +1,4 @@
+import com.sun.org.apache.bcel.internal.generic.LADD;
 import entities.*;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyHash;
@@ -31,10 +32,7 @@ public class Queries {
 
     public void loadData(){
         FileLoader.loadData(this.booksList, this.languagesHash, this.authorsHash, this.usersHash, this.ratingsHash);
-        MyList<Language> l = this.languagesHash.getValues();
-        for (Language lan : l){
-            System.out.println(lan.getLanguageCode() + "  " + lan.booksAmount());
-        }
+        
     }
 
     public MyList<Book> getBooksList() {
@@ -100,5 +98,26 @@ public class Queries {
         }
 
         return top10;
+    }
+
+    public MyList<Language> top5WithMoreReserves(){
+
+        MyList<Language> top5 = new MyArrayListImpl<>(5);
+        MyHeap<Language> languageHeap = new MyHeapImpl<>(languagesHash.size());
+
+        for (Language language : languagesHash.getValues()){
+
+            languageHeap.insert(language);
+
+        }
+
+        for (int i = 0; i<5; i++){
+
+            top5.add(languageHeap.deleteMax());
+
+        }
+
+
+        return top5;
     }
 }

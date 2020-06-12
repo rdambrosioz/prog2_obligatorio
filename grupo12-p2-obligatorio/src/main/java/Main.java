@@ -1,4 +1,5 @@
 import entities.Book;
+import entities.Language;
 import entities.User;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
@@ -48,6 +49,14 @@ public class Main {
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
                                 for (User user : top10Raters){
                                     System.out.println(user);
+                                }
+                                break;
+                            case 4:
+                                time = System.currentTimeMillis();
+                                MyList<Language> top5Languages = queriesData.top5WithMoreReserves();
+                                System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
+                                for (Language language : top5Languages){
+                                    System.out.println(language);
                                 }
                                 break;
                         }

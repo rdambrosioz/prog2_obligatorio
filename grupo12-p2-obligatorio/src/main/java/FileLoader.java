@@ -228,19 +228,19 @@ public class FileLoader {
 
         switch (lang){
             case "eng":
-                languageCode = "Englsh";
+                languageCode = "English";
                 break;
             case "en-US":
-                languageCode = "Englsh";
+                languageCode = "English";
                 break;
             case "en-GB":
-                languageCode = "Englsh";
+                languageCode = "English";
                 break;
             case "en":
-                languageCode = "Englsh";
+                languageCode = "English";
                 break;
             case "en-CA":
-                languageCode = "Englsh";
+                languageCode = "English";
                 break;
             case "ara":
                 languageCode = "Arabian";

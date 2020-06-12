@@ -16,7 +16,7 @@ public class UserNameHashKey {
         return Objects.equals(userId, that.userId);
     }
 
-    
+
     public int hashCode() {
         return userId.intValue();
     }
