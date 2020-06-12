@@ -97,15 +97,9 @@ public class FileLoader {
                     newUser = new User(userId);
                     usersHash.put(key,newUser);
                 }
-
-
                 newToRead = booksList.get((Integer.parseInt(arguments.get(1)))-1);
 
-                newToRead.incrementBookings();
-
-                newUser.getReservedToRead().add(newToRead);
-
-
+                newToRead.addBooking(newUser);
             }
         } catch (IOException error) {
             error.printStackTrace();
@@ -149,7 +143,6 @@ public class FileLoader {
                     ratingsHash.put(rating,rating);
                 }
 
-                book.incrementReviews();
                 user.getRatings().add(rating);
 
 

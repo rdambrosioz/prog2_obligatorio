@@ -1,3 +1,4 @@
+import entities.Book;
 import entities.User;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
@@ -33,13 +34,22 @@ public class Main {
                     do {
                         consulta = Menu.menuConsultas();
                         switch (consulta){
+                            case 1:
+                                time = System.currentTimeMillis();
+                                MyList<Book> top10Reserved = queriesData.topReserved();
+                                System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
+                                for (Book book : top10Reserved){
+                                    System.out.println(book);
+                                }
+                                break;
                             case 3:
                                 time = System.currentTimeMillis();
-                                MyList<User> top10 = queriesData.topRaters();
+                                MyList<User> top10Raters = queriesData.topRaters();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                                for (User user : top10){
+                                for (User user : top10Raters){
                                     System.out.println(user);
                                 }
+                                break;
                         }
                     } while (consulta != 6);
 

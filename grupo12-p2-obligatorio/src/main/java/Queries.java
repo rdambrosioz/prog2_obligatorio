@@ -83,4 +83,22 @@ public class Queries {
 
 
     }
+
+
+
+    public MyList<Book> topReserved(){
+
+        MyList<Book> top10 = new MyArrayListImpl<>(10);
+        MyHeap<BookBookingsHeapNode> bookHeap = new MyHeapImpl<>(booksList.getSize());
+
+        for (Book book : booksList){
+            bookHeap.insert(new BookBookingsHeapNode(book));
+        }
+
+        for(int i=0; i<10; i++){
+            top10.add(bookHeap.deleteMax().getBook());
+        }
+
+        return top10;
+    }
 }

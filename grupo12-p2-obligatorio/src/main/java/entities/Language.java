@@ -27,6 +27,14 @@ public class Language {
         this.booksInThisLanguage.add(book);
     }
 
+    public int countBookings(){
+        int bookings = 0;
+        for (Book book : booksInThisLanguage){
+            bookings += book.bookedBySize();
+        }
+        return bookings;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

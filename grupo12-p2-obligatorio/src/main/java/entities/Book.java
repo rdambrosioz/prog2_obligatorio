@@ -13,9 +13,7 @@ public class Book {
     private String originalTitle;
     private String title;
     private String imageUrl;
-    private int bookings;
-    private int reviews;
-
+    private MyList<User> bookedBy;
     private MyList<Author> authors;
 
     public Book(long bookId, String isbn, Integer originalPublicationYear, String originalTitle, String title, String imageUrl) {
@@ -26,20 +24,20 @@ public class Book {
         this.originalTitle = originalTitle;
         this.title = title;
         this.imageUrl = imageUrl;
-        this.bookings = 0;
-        this.reviews = 0;
+        this.bookedBy = new MyLinkedListImpl<>();
+
     }
 
     public void addAuthor(Author author){
         this.authors.add(author);
     }
 
-    public void incrementBookings(){
-        this.bookings++;
+    public void addBooking(User user){
+        this.bookedBy.add(user);
     }
 
-    public void incrementReviews(){
-        this.reviews++;
+    public int bookedBySize(){
+        return this.bookedBy.getSize();
     }
 
     public long getBookId() {
@@ -48,14 +46,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return  "book_id: " + bookId + "\n" +
-                "isbn: " + isbn + "\n" +
-                "authors: " + authors + "\n" +
-                "original_publication_year: " + originalPublicationYear + "\n" +
-                "original_title: " +originalTitle+ "\n" +
-                "title: " + title + "\n" +
-                "image_url: " + imageUrl + "\n" +
-                "\n\n";
+        return  "Id del libro: " + bookId + "\n" +
+                "Titulo: " + title + "\n" +
+                "Cantidad: " + this.bookedBy.getSize() + "\n" +
+                "\n";
     }
 
 }

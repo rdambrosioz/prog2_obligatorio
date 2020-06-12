@@ -44,32 +44,46 @@ public class MyHeapImpl<T extends Comparable<T>> implements MyHeap<T> {
 
     @Override
     public T deleteMax() {
+
+        if(size() == 1){
+            pointerLastValue--;
+            return this.values[0];
+        } else if (size() == 0){
+            return null;
+        }
+
+
         T maxValue = this.values[0];
         int position = 0;
-
-
+        int newPosition = position;
         pointerLastValue--;
+
+
+
         this.values[0] = this.values[pointerLastValue];
         this.values[pointerLastValue] = null;
 
         T tempValue = this.values[0];
 
-        int lastValue = getFatherPosition(pointerLastValue-1);
-        while(position < lastValue && (tempValue.compareTo(getFirstChild(position)) < 0 || tempValue.compareTo(getSecondChild(position)) < 0)){
 
-            if (getFirstChild(position).compareTo(getSecondChild(position)) >= 0){
-                tempValue = this.values[position];
-                this.values[position] = this.values[getChildPosition(position)];
-                this.values[getChildPosition(position)] = tempValue;
-                position = getChildPosition(position);
-            } else{
-                tempValue = this.values[position];
-                this.values[position] = this.values[getChildPosition(position)+1];
-                this.values[getChildPosition(position)+1] = tempValue;
-                position = getChildPosition(position)+1;
+        while(true) {
+
+            if (getChildPosition(position) < pointerLastValue && tempValue.compareTo(getFirstChild(position)) < 0){
+                newPosition = getChildPosition(position);
+                tempValue = values[newPosition];
+            }
+            if (getChildPosition(position)+1 < pointerLastValue && tempValue.compareTo(getSecondChild(position)) < 0){
+                newPosition = getChildPosition(position)+1;
             }
 
-
+            if (position != newPosition ){
+                tempValue = values[position];
+                values[position] = values[newPosition];
+                values[newPosition] = tempValue;
+                position = newPosition;
+            } else{
+                break;
+            }
         }
 
 

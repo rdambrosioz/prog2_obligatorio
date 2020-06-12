@@ -8,7 +8,6 @@ import java.util.Objects;
 public class User implements Comparable<User> {
 
     private long userId;
-    private MyList<Book> reservedToRead;
     private MyList<Rating> ratings;
 
 
@@ -16,7 +15,6 @@ public class User implements Comparable<User> {
 
     public User(long userId) {
         this.userId = userId;
-        this.reservedToRead = new MyLinkedListImpl<>();
         this.ratings = new MyLinkedListImpl<>();
     }
 
@@ -25,9 +23,6 @@ public class User implements Comparable<User> {
         return userId;
     }
 
-    public MyList<Book> getReservedToRead() {
-        return reservedToRead;
-    }
 
     public MyList<Rating> getRatings() {
         return ratings;
