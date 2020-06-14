@@ -2,6 +2,7 @@ import entities.AuthorPublications;
 import entities.Book;
 import entities.Language;
 import entities.User;
+import entities.nodes.BookRatedHeapNode;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
 import uy.edu.um.prog2.adt.list.MyList;
@@ -45,6 +46,16 @@ public class Main {
                                     System.out.println(book);
                                 }
                                 break;
+
+                            case 2:
+                                time = System.currentTimeMillis();
+                                MyList<BookRatedHeapNode> top20booksEvaluated = queriesData.top20WithMoreEvaluations();
+                                System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
+                                for (BookRatedHeapNode book : top20booksEvaluated){
+                                    System.out.println(book);
+                                }
+                                break;
+
                             case 3:
                                 time = System.currentTimeMillis();
                                 MyList<User> top10Raters = queriesData.topRaters();
@@ -53,6 +64,7 @@ public class Main {
                                     System.out.println(user);
                                 }
                                 break;
+
                             case 4:
                                 time = System.currentTimeMillis();
                                 MyList<Language> top5Languages = queriesData.top5WithMoreReserves();
@@ -61,6 +73,7 @@ public class Main {
                                     System.out.println(language);
                                 }
                                 break;
+
                             case 5:
                                 time = System.currentTimeMillis();
                                 MyList<AuthorPublications> top20Authors = queriesData.top20Author();

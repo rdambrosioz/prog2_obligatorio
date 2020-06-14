@@ -64,7 +64,7 @@ public class AuthorPublications implements Comparable<AuthorPublications> {
     public String toString() {
         return  "Autor: " + author + "\n" +
                 "Año de publicación: " + year + "\n" +
-                "Cantida: " + books.getSize() + "\n" + "\n"
+                "Cantidad: " + books.getSize() + "\n" + "\n"
                 ;
     }
 }

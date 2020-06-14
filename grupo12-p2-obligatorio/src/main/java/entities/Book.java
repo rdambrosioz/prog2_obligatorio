@@ -15,6 +15,7 @@ public class Book {
     private String imageUrl;
     private MyList<User> bookedBy;
     private MyList<Author> authors;
+    private MyList<User> ratedBy;
 
     public Book(long bookId, String isbn, Integer originalPublicationYear, String originalTitle, String title, String imageUrl) {
         this.bookId = bookId;
@@ -25,11 +26,24 @@ public class Book {
         this.title = title;
         this.imageUrl = imageUrl;
         this.bookedBy = new MyLinkedListImpl<>();
+        this.ratedBy = new MyLinkedListImpl<>();
 
+    }
+
+    public MyList<User> getRatedBy() {
+        return ratedBy;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void addAuthor(Author author){
         this.authors.add(author);
+    }
+
+    public int ratedBySize(){
+        return this.ratedBy.getSize();
     }
 
     public void addBooking(User user){
@@ -48,8 +62,9 @@ public class Book {
     public String toString() {
         return  "Id del libro: " + bookId + "\n" +
                 "Titulo: " + title + "\n" +
-                "Cantidad: " + this.bookedBy.getSize() + "\n" +
-                "\n";
+                "Cantidad: " + this.bookedBy.getSize() + "\n"
+                ;
     }
+
 
 }

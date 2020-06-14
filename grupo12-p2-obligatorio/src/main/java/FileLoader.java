@@ -150,7 +150,7 @@ public class FileLoader {
                     user = newUser;
                     usersHash.put(user, user);
                 }
-
+                book.getRatedBy().add(user);
                 user.addRated(book,Integer.parseInt(arguments.get(2)));
 
             }

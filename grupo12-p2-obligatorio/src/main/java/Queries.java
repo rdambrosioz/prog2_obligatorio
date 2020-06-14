@@ -1,5 +1,6 @@
 import entities.*;
 import entities.nodes.BookBookingsHeapNode;
+import entities.nodes.BookRatedHeapNode;
 import entities.nodes.UserAvgRatingNode;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyHash;
@@ -73,6 +74,25 @@ public class Queries {
         return top10;
     }
 
+    //CONSULTA 2
+
+    public MyList<BookRatedHeapNode> top20WithMoreEvaluations(){
+
+        MyList<BookRatedHeapNode> booksMostEvaluated = new MyArrayListImpl<>(10);
+        MyHeap<BookRatedHeapNode> booksHeapRated = new MyHeapImpl<>(booksList.getSize());
+
+        for (Book book : booksList){
+
+            booksHeapRated.insert(new BookRatedHeapNode(book));
+        }
+        for (int i = 0; i<20; i++){
+
+            booksMostEvaluated.add(booksHeapRated.deleteMax());
+        }
+
+        return booksMostEvaluated;
+    }
+
 
     //CONSULTA 3
     public MyList<User> topRaters(){
@@ -108,7 +128,6 @@ public class Queries {
 
         for (Language language : languagesHash.getValues()){
 
-            System.out.println(language);
             languageHeap.insert(language);
 
         }
