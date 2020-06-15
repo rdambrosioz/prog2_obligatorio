@@ -236,17 +236,9 @@ public class FileLoader {
 
         switch (lang){
             case "eng":
-                languageCode = "English";
-                break;
             case "en-US":
-                languageCode = "English";
-                break;
-            case "en-GB":
-                languageCode = "English";
-                break;
             case "en":
-                languageCode = "English";
-                break;
+            case "en-GB":
             case "en-CA":
                 languageCode = "English";
                 break;
@@ -310,8 +302,9 @@ public class FileLoader {
             case "vie":
                 languageCode = "Vietnamese";
                 break;
-            default:
+            case "nan":
                 languageCode = "Otro";
+                break;
         }
 
         newLanguage = new Language(languageCode);
