@@ -27,11 +27,11 @@ public class Main {
                     queriesData.loadData();
 
                     System.out.println("El tiempo de carga de datos fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                    System.out.println("La cantidad de libros es: " + queriesData.getBooksList().getSize());
+                    System.out.println("La cantidad de libros es: " + queriesData.getBooksList().size());
                     System.out.println("La cantidad de idiomas es: " + queriesData.getLanguagesHash().size());
                     System.out.println("La cantidad de autores es: " + queriesData.getAuthorsHash().size());
-                    System.out.println("La cantidad de usuarios es: " + queriesData.getUsersHash().size());
                     System.out.println("La cantidad de autores por año es: " + queriesData.getAuthorsPublicationsHash().size());
+                    System.out.println("La cantidad de usuarios es: " + queriesData.getUsersHash().size());
 
                     break;
                 case 2:

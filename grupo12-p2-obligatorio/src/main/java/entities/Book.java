@@ -4,6 +4,7 @@ import uy.edu.um.prog2.adt.list.MyList;
 import uy.edu.um.prog2.adt.list.linkedlist.MyLinkedListImpl;
 
 import javax.print.DocFlavor;
+import java.util.Objects;
 
 public class Book {
 
@@ -30,6 +31,10 @@ public class Book {
 
     }
 
+    public Book (long bookId){
+        this.bookId = bookId;
+    }
+
     public MyList<User> getRatedBy() {
         return ratedBy;
     }
@@ -50,12 +55,30 @@ public class Book {
         this.bookedBy.add(user);
     }
 
+    public void addRatedBy(User user){
+        this.ratedBy.add(user);
+    }
+
+
     public int bookedBySize(){
         return this.bookedBy.getSize();
     }
 
     public long getBookId() {
         return bookId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return bookId == book.bookId;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) bookId;
     }
 
     @Override

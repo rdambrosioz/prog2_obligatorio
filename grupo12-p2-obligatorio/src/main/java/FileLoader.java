@@ -19,18 +19,19 @@ public class FileLoader {
 
 
 
-    public static void loadData(MyList<Book> booksList, MyHash<Language,Language> languages, MyHash<Author, Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash, MyHash<User,User> usersHash){
+    public static void loadData(MyHash<Book, Book> booksHash, MyHash<Language,Language> languages, MyHash<Author, Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash, MyHash<User,User> usersHash){
 
-        loadBooksCSV(booksList, languages, authorsHash, authorsPublicationsHash);
-        loadUsersCSV(booksList, usersHash);
-        loadRatingsCSV(booksList,usersHash);
+        loadBooksCSV(booksHash, languages, authorsHash, authorsPublicationsHash);
+        loadUsersCSV(booksHash, usersHash);
+        loadRatingsCSV(booksHash,usersHash);
 
     }
 
-    private static void loadBooksCSV(MyList<Book> booksList, MyHash<Language, Language> languages, MyHash<Author,Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash){
+    private static void loadBooksCSV(MyHash<Book, Book> booksHash, MyHash<Language, Language> languages, MyHash<Author,Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash){
         Path pathToFile = Paths.get("..\\books.csv");
         MyList<String> authors = null;
         Book newBook = null;
+        Book book = null;
         Author newAuthor = null;
         Author author = null;
         Integer yearOfPublication = null;
@@ -53,9 +54,16 @@ public class FileLoader {
 
                 language = findLanguage(languages, arguments.get(6));
 
-                newBook = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
+                newBook = new Book(Long.parseLong(arguments.get(0)));
+                book = booksHash.get(newBook);
 
-                language.addBook(newBook);
+                if (book == null){
+                    book = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
+                    booksHash.put(book, book);
+                }
+
+
+                language.addBook(book);
 
                 authors = authorParser(arguments.get(2));
 
@@ -68,7 +76,7 @@ public class FileLoader {
                         authorsHash.put(author, author);
                     }
 
-                    newBook.addAuthor(author);
+                    book.addAuthor(author);
 
                     if (yearOfPublication != null) {
                         newPublication = new AuthorPublications(author, yearOfPublication);
@@ -77,11 +85,10 @@ public class FileLoader {
                             publication = newPublication;
                             authorsPublicationsHash.put(publication, publication);
                         }
-                        publication.addBook(newBook);
+                        publication.addBook(book);
                     }
                 }
 
-                booksList.add(newBook);
 
             }
         } catch (IOException error) {
@@ -90,7 +97,7 @@ public class FileLoader {
         System.gc();
     }
 
-    private static void loadUsersCSV(MyList<Book> booksList, MyHash<User,User> usersHash){  // Falta ratings
+    private static void loadUsersCSV(MyHash<Book,Book> booksHash, MyHash<User,User> usersHash){  // Falta ratings
         Path pathToFile = Paths.get("..\\to_read.csv");
         User newUser = null;
         User user = null;
@@ -112,7 +119,14 @@ public class FileLoader {
                     user = newUser;
                     usersHash.put(user,user);
                 }
-                newToRead = booksList.get((Integer.parseInt(arguments.get(1)))-1);
+
+
+                newToRead = booksHash.get(new Book(Long.parseLong(arguments.get(1))));
+                if (newToRead == null){
+                    throw new RuntimeException();
+                }
+
+
 
                 newToRead.addBooking(user);
             }
@@ -122,7 +136,7 @@ public class FileLoader {
         System.gc();
     }
 
-    private static void loadRatingsCSV(MyList<Book> booksList, MyHash<User,User> usersHash){
+    private static void loadRatingsCSV(MyHash<Book, Book> booksHash, MyHash<User,User> usersHash){
         Path pathToFile = Paths.get("..\\ratings.csv");
 
         Book book = null;
@@ -137,20 +151,21 @@ public class FileLoader {
 
                 MyList<String> arguments = parser(line,3);
 
-                try {
-                    book = booksList.get(Integer.parseInt(arguments.get(1)) - 1);
-                } catch (Exception error){
-                    error.printStackTrace();
+                book = booksHash.get(new Book(Long.parseLong(arguments.get(1))));
+                if (book == null){
+                    throw new RuntimeException();
                 }
+
 
                 newUser = new User(Long.parseLong(arguments.get(0)));
                 user = usersHash.get(newUser);
-
                 if (user == null){
                     user = newUser;
                     usersHash.put(user, user);
                 }
-                book.getRatedBy().add(user);
+
+
+                book.addRatedBy(user);
                 user.addRated(book,Integer.parseInt(arguments.get(2)));
 
             }
@@ -240,6 +255,7 @@ public class FileLoader {
             case "en":
             case "en-GB":
             case "en-CA":
+
                 languageCode = "English";
                 break;
             case "ara":
@@ -322,7 +338,90 @@ public class FileLoader {
     }
 
 
+    private static Language findLanguage2(MyHash<Language,Language> languages, String lang) {
 
+        String languageCode = null;
+        Language language = null;
+        Language newLanguage = null;
+
+        if (lang.equals("eng") || lang.equals("en-US") || lang.equals("en") || lang.equals("en-GB") || lang.equals("en-CA")) {
+            languageCode = "English";
+
+        }else if (lang.equals("ara")) {
+            languageCode = "Arabian";
+
+        }else if (lang.equals("fre")) {
+            languageCode = "French";
+
+        }else if (lang.equals("ind")) {
+            languageCode = "Indonesian";
+
+        }else if (lang.equals("spa")) {
+            languageCode = "Spanish";
+
+        }else if (lang.equals("ger")) {
+            languageCode = "German";
+
+        }else if (lang.equals("per")) {
+            languageCode = "Persian";
+
+        }else if (lang.equals("jpn")) {
+            languageCode = "Japanese";
+
+        }else if (lang.equals("por")) {
+            languageCode = "Portuguese";
+
+        }else if (lang.equals("pol")) {
+            languageCode = "Polish";
+
+        }else if (lang.equals("dan")) {
+            languageCode = "Danish";
+
+        }else if (lang.equals("ita")) {
+            languageCode = "Italian";
+
+        }else if (lang.equals("fil")) {
+            languageCode = "Filipino";
+
+        }else if (lang.equals("rus")) {
+            languageCode = "Russian";
+
+        }else if (lang.equals("mul")) {
+            languageCode = "Multiple Languages";
+
+        }else if (lang.equals("rum")) {
+            languageCode = "Romanian";
+
+        }else if (lang.equals("swe")) {
+            languageCode = "Swedish";
+
+        }else if (lang.equals("nl")) {
+            languageCode = "Dutch";
+
+        }else if (lang.equals("nor")) {
+            languageCode = "Norwegian";
+
+        }else if (lang.equals("tur")) {
+            languageCode = "Turkish";
+
+        }else if (lang.equals("vie")) {
+            languageCode = "Vietnamese";
+
+        } else{
+                languageCode = "Other";
+        }
+
+        newLanguage = new Language(languageCode);
+
+        language = languages.get(newLanguage);
+
+        if (language == null) {
+            language = newLanguage;
+            languages.put(language, language);
+        }
+
+        return language;
+    }
 
 
 

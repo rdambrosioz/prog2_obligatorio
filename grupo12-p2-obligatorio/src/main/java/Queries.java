@@ -13,7 +13,7 @@ import uy.edu.um.prog2.sorting.Sorting;
 public class Queries {
 
 
-    private MyList<Book> booksList;
+    private MyHash<Book,Book> booksHash;
     private MyHash<Language, Language> languagesHash;
     private MyHash<Author, Author> authorsHash;
     private MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash;
@@ -23,7 +23,7 @@ public class Queries {
 
 
     public Queries() {
-        this.booksList = new MyArrayListImpl<>(10001);
+        this.booksHash = new MyClosedHashImpl<>(12000, false, 0.9f);
         this.languagesHash = new MyClosedHashImpl<>(50,false);
         this.authorsHash = new MyClosedHashImpl<>(15000, false);
         this.authorsPublicationsHash = new MyClosedHashImpl<>(26000, false);
@@ -32,12 +32,12 @@ public class Queries {
     }
 
     public void loadData(){
-        FileLoader.loadData(this.booksList, this.languagesHash, this.authorsHash, this.authorsPublicationsHash, this.usersHash);
+        FileLoader.loadData(this.booksHash, this.languagesHash, this.authorsHash, this.authorsPublicationsHash, this.usersHash);
         
     }
 
-    public MyList<Book> getBooksList() {
-        return booksList;
+    public MyHash<Book, Book> getBooksList() {
+        return booksHash;
     }
 
     public MyHash<Author, Author> getAuthorsHash() {
@@ -61,9 +61,10 @@ public class Queries {
     public MyList<Book> topReserved(){
 
         MyList<Book> top10 = new MyArrayListImpl<>(10);
-        MyHeap<BookBookingsHeapNode> bookHeap = new MyHeapImpl<>(booksList.getSize());
+        MyList<Book> books = booksHash.getValues();
+        MyHeap<BookBookingsHeapNode> bookHeap = new MyHeapImpl<>(books.getSize());
 
-        for (Book book : booksList){
+        for (Book book : books){
             bookHeap.insert(new BookBookingsHeapNode(book));
         }
 
@@ -79,9 +80,10 @@ public class Queries {
     public MyList<BookRatedHeapNode> top20WithMoreEvaluations(){
 
         MyList<BookRatedHeapNode> booksMostEvaluated = new MyArrayListImpl<>(10);
-        MyHeap<BookRatedHeapNode> booksHeapRated = new MyHeapImpl<>(booksList.getSize());
+        MyList<Book> books = booksHash.getValues();
+        MyHeap<BookRatedHeapNode> booksHeapRated = new MyHeapImpl<>(books.getSize());
 
-        for (Book book : booksList){
+        for (Book book : books){
 
             booksHeapRated.insert(new BookRatedHeapNode(book));
         }
