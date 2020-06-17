@@ -39,4 +39,12 @@ public class BookBookingsHeapNode implements Comparable<BookBookingsHeapNode>{
         }
         return value;
     }
+
+    @Override
+    public String toString() {
+        return  "Id del libro: " + book.getBookId() + "\n" +
+                "Titulo: " + book.getTitle() + "\n" +
+                "Cantidad: " + book.bookedBySize() + "\n"
+                ;
+    }
 }

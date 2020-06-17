@@ -5,13 +5,14 @@ import uy.edu.um.prog2.adt.hash.MyHash;
 import uy.edu.um.prog2.adt.list.MyArrayListImpl;
 import uy.edu.um.prog2.adt.list.MyList;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 
 public class FileLoader {
@@ -39,7 +40,11 @@ public class FileLoader {
         AuthorPublications newPublication = null;
         AuthorPublications publication = null;
 
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
+        File fileDir = new File("..\\books.csv");
+
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, UTF_8)){
+
             String line = br.readLine();
 
             while ((line = br.readLine()) != null) {
@@ -94,7 +99,8 @@ public class FileLoader {
         } catch (IOException error) {
             error.printStackTrace();
         }
-        System.gc();
+
+
     }
 
     private static void loadUsersCSV(MyHash<Book,Book> booksHash, MyHash<User,User> usersHash){  // Falta ratings
@@ -104,7 +110,7 @@ public class FileLoader {
         Book newToRead = null;
         Long userId = null;
 
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, UTF_8)) {
 
             String line = br.readLine();
 
@@ -133,7 +139,7 @@ public class FileLoader {
         } catch (IOException error) {
             error.printStackTrace();
         }
-        System.gc();
+
     }
 
     private static void loadRatingsCSV(MyHash<Book, Book> booksHash, MyHash<User,User> usersHash){
@@ -144,7 +150,7 @@ public class FileLoader {
         User newUser = null;
 
 
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.UTF_8)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, UTF_8)) {
             String line = br.readLine();
 
             while ((line = br.readLine()) != null) {
@@ -172,7 +178,6 @@ public class FileLoader {
         } catch (IOException error) {
             error.printStackTrace();
         }
-        System.gc();
 
     }
 
@@ -183,6 +188,8 @@ public class FileLoader {
         boolean inQuotes= false;
 
         StringBuilder builder = new StringBuilder();
+
+
 
         for (char c : line.toCharArray()) {
             switch (c) {
@@ -336,7 +343,6 @@ public class FileLoader {
 
 
     }
-
 
     private static Language findLanguage2(MyHash<Language,Language> languages, String lang) {
 

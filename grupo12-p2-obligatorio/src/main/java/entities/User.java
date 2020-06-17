@@ -92,8 +92,6 @@ public class User implements Comparable<User> {
 
     @Override
     public String toString() {
-        return "User: " + userId + "\n" +
-                "Cantidad: " + allRatingsSize() + "\n" +
-                "Rating promedio: " + String.format("%.2f", averageRating()) + "\n" ;
+        return "User: " + userId + "\n\n";
     }
 }

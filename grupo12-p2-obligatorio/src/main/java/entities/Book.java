@@ -35,6 +35,10 @@ public class Book {
         this.bookId = bookId;
     }
 
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
     public MyList<User> getRatedBy() {
         return ratedBy;
     }

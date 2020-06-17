@@ -15,7 +15,6 @@ repositories {
 
 
 dependencies {
-    compile group: 'com.opencsv', name: 'opencsv', version: '5.2'
     compile project(':grupo12-p2-tads')
 }
 

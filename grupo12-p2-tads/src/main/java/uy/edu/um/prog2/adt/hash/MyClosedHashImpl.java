@@ -129,6 +129,24 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
         return list;
     }
 
+    @Override
+    public T[] getValuesVector() {
+        int updates = 0;
+        T[] vector = (T[]) new Comparable[size];
+
+        for (int i = 0; i< this.hashArray.length; i++){
+            if (hashArray[i] != null && !hashArray[i].isDeleted()){
+                vector[updates] = hashArray[i].getValue();
+                updates++;
+            }
+            if (updates == this.size){
+                break;
+            }
+        }
+
+        return vector;
+    }
+
     private int getPosition(int keyHash, int iterations){
         int position = 0;
         if (linear){

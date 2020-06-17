@@ -27,4 +27,11 @@ public class UserAvgRatingNode implements Comparable<UserAvgRatingNode>{
         }
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "User: " + user.getUserId() + "\n" +
+                "Cantidad: " + user.allRatingsSize() + "\n" +
+                "Rating promedio: " + String.format("%.2f", user.averageRating()) + "\n" ;
+    }
 }

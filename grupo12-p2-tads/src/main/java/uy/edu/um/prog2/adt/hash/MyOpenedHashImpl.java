@@ -93,6 +93,10 @@ public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
         return null;
     }
 
+    @Override
+    public T[] getValuesVector() {
+        return null;
+    }
 
     private void reHashing(){
 

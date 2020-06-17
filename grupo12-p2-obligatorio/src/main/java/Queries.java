@@ -25,8 +25,8 @@ public class Queries {
     public Queries() {
         this.booksHash = new MyClosedHashImpl<>(12000, false, 0.9f);
         this.languagesHash = new MyClosedHashImpl<>(50,false);
-        this.authorsHash = new MyClosedHashImpl<>(15000, false);
-        this.authorsPublicationsHash = new MyClosedHashImpl<>(26000, false);
+        this.authorsHash = new MyClosedHashImpl<>(12000, false);
+        this.authorsPublicationsHash = new MyClosedHashImpl<>(25000, false);
         this.usersHash = new MyClosedHashImpl<>(60000,false,0.9f);
 
     }
@@ -58,9 +58,9 @@ public class Queries {
     }
 
     //CONSULTA 1
-    public MyList<Book> topReserved(){
+    public MyList<BookBookingsHeapNode> topReserved(){
 
-        MyList<Book> top10 = new MyArrayListImpl<>(10);
+        MyList<BookBookingsHeapNode> top10 = new MyArrayListImpl<>(10);
         MyList<Book> books = booksHash.getValues();
         MyHeap<BookBookingsHeapNode> bookHeap = new MyHeapImpl<>(books.getSize());
 
@@ -69,14 +69,13 @@ public class Queries {
         }
 
         for(int i=0; i<10; i++){
-            top10.add(bookHeap.deleteMax().getBook());
+            top10.add(bookHeap.deleteMax());
         }
 
         return top10;
     }
 
     //CONSULTA 2
-
     public MyList<BookRatedHeapNode> top20WithMoreEvaluations(){
 
         MyList<BookRatedHeapNode> booksMostEvaluated = new MyArrayListImpl<>(10);
@@ -97,12 +96,12 @@ public class Queries {
 
 
     //CONSULTA 3
-    public MyList<User> topRaters(){
+    public MyList<UserAvgRatingNode> topRaters(){
 
         MyList<User> usersList = this.usersHash.getValues();
         MyHeap<User> usersHeap = new MyHeapImpl<>(usersList.getSize());
         UserAvgRatingNode[] top10array = new UserAvgRatingNode[10];
-        MyList<User> top10 = new MyArrayListImpl<>(10);
+        MyList<UserAvgRatingNode> top10 = new MyArrayListImpl<>(10);
 
         for (User user : usersList){
             usersHeap.insert(user);
@@ -113,7 +112,7 @@ public class Queries {
         Sorting.bubbleSort(top10array);
 
         for (int i = 0; i<10; i++){
-            top10.add(top10array[i].getUser());
+            top10.add(top10array[i]);
         }
 
         return top10;

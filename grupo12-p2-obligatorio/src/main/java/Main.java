@@ -2,7 +2,9 @@ import entities.AuthorPublications;
 import entities.Book;
 import entities.Language;
 import entities.User;
+import entities.nodes.BookBookingsHeapNode;
 import entities.nodes.BookRatedHeapNode;
+import entities.nodes.UserAvgRatingNode;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
 import uy.edu.um.prog2.adt.list.MyList;
@@ -40,9 +42,9 @@ public class Main {
                         switch (consulta){
                             case 1:
                                 time = System.currentTimeMillis();
-                                MyList<Book> top10Reserved = queriesData.topReserved();
+                                MyList<BookBookingsHeapNode> top10Reserved = queriesData.topReserved();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                                for (Book book : top10Reserved){
+                                for (BookBookingsHeapNode book : top10Reserved){
                                     System.out.println(book);
                                 }
                                 break;
@@ -58,9 +60,9 @@ public class Main {
 
                             case 3:
                                 time = System.currentTimeMillis();
-                                MyList<User> top10Raters = queriesData.topRaters();
+                                MyList<UserAvgRatingNode> top10Raters = queriesData.topRaters();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                                for (User user : top10Raters){
+                                for (UserAvgRatingNode user : top10Raters){
                                     System.out.println(user);
                                 }
                                 break;
