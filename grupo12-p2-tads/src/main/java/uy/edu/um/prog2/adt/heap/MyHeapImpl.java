@@ -14,6 +14,17 @@ public class MyHeapImpl<T extends Comparable<T>> implements MyHeap<T> {
         this.values = (T[]) new Comparable[size];
         this.pointerLastValue = 0;
     }
+    public MyHeapImpl(T[] values) {
+        this.values = values;
+        this.pointerLastValue = 0;
+        this.constructor();
+    }
+
+    private void constructor() {
+        for (int i=0; i<values.length; i++){
+            insert(values[i]);
+        }
+    }
 
     @Override
     public void insert(T value) {

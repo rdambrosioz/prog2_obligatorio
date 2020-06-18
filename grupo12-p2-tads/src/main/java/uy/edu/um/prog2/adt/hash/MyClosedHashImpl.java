@@ -132,7 +132,7 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
     @Override
     public T[] getValuesVector() {
         int updates = 0;
-        T[] vector = (T[]) new Comparable[size];
+        T[] vector = (T[]) new Object[size];
 
         for (int i = 0; i< this.hashArray.length; i++){
             if (hashArray[i] != null && !hashArray[i].isDeleted()){

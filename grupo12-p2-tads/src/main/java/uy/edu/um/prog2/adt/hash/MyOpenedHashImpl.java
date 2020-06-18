@@ -1,6 +1,7 @@
 package uy.edu.um.prog2.adt.hash;
 
 import uy.edu.um.prog2.adt.exeptions.ListOutOfIndex;
+import uy.edu.um.prog2.adt.list.MyArrayListImpl;
 import uy.edu.um.prog2.adt.list.linkedlist.MyLinkedListImpl;
 import uy.edu.um.prog2.adt.list.MyList;
 
@@ -90,12 +91,37 @@ public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
 
     @Override
     public MyList<T> getValues() {
-        return null;
+        MyList<T> listToReturn = new MyLinkedListImpl<>();
+
+        MyList<HashEntry<K,T>> listForPosition = null;
+        for (int i=0; i<entryArray.length; i++){
+            if (entryArray[i] != null){
+                listForPosition = entryArray[i];
+                for (HashEntry<K,T> hs : listForPosition){
+                    listToReturn.add(hs.getValue());
+                }
+            }
+        }
+
+        return listToReturn;
     }
 
     @Override
     public T[] getValuesVector() {
-        return null;
+        T[] vectorToReturn = (T[]) new Object[this.size];
+        int position = 0;
+
+        MyList<HashEntry<K,T>> listForPosition = null;
+        for (int i=0; i<entryArray.length; i++){
+            if (entryArray[i] != null){
+                listForPosition = entryArray[i];
+                for (HashEntry<K,T> hs : listForPosition){
+                    vectorToReturn[position] = hs.getValue();
+                    position++;
+                }
+            }
+        }
+        return vectorToReturn;
     }
 
     private void reHashing(){

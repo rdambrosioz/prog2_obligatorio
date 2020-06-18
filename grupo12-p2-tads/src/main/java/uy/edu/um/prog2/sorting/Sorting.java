@@ -27,7 +27,6 @@ public class Sorting {
         return elements;
     }
 
-
     public static <T extends Comparable<T>> T[] bubbleSort(T[] elements){
         return bubbleSort(elements, elements.length);
     }
