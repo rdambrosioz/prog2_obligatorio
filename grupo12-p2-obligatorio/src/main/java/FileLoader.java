@@ -66,7 +66,7 @@ public class FileLoader {
     private static void loadBooksCSV(MyHash<Book, Book> booksHash, MyHash<Language, Language> languages, MyHash<Author,Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash){
         Path pathToFile = Paths.get("..\\books.csv");
         MyList<String> authors = null;
-        //Book newBook = null;
+        Book newBook = null;
         Book book = null;
         Author newAuthor = null;
         Author author = null;
@@ -92,19 +92,19 @@ public class FileLoader {
                     yearOfPublication = null;
                 }
 
+
+                newBook = new Book(Long.parseLong(arguments.get(0)));
+                book = booksHash.get(newBook);
+
+                if (book == null){
+                    book = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
+                    booksHash.put(book, book);
+                }
+
+//                book = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
+//                booksHash.put(book, book);
+
                 language = findLanguage(languages, arguments.get(6));
-
-//                newBook = new Book(Long.parseLong(arguments.get(0)));
-//                book = booksHash.get(newBook);
-//
-//                if (book == null){
-//                    book = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
-//                    booksHash.put(book, book);
-//                }
-
-                book = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
-                booksHash.put(book, book);
-
                 if (language != null) {
                     language.addBook(book);
                 }
