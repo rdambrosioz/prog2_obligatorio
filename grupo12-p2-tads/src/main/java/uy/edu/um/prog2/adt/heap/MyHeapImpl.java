@@ -138,6 +138,8 @@ public class MyHeapImpl<T extends Comparable<T>> implements MyHeap<T> {
         return str;
     }
 
+
+
     private int getFatherPosition(int childPosition){
         return ((childPosition-1)/2);
     }
@@ -153,6 +155,7 @@ public class MyHeapImpl<T extends Comparable<T>> implements MyHeap<T> {
     private T getFirstChild(int fatherPosition){
         return this.values[2*fatherPosition +1];
     }
+
     private T getSecondChild(int fatherPosition){
         return this.values[2*fatherPosition +2];
     }

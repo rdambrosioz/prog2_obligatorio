@@ -10,8 +10,15 @@ import uy.edu.um.prog2.adt.list.MyQueue;
 
 import java.util.Iterator;
 
+/**
+ *
+ * @param <K> Key type
+ * @param <T> Value type
+ */
 public class MyBinarySearchTreeImpl<K extends Comparable<K>, T>
         implements MyBinarySearchTree<K,T> {
+
+
 
     private TreeNode<K, T> root;
 
@@ -28,9 +35,7 @@ public class MyBinarySearchTreeImpl<K extends Comparable<K>, T>
     }
 
     @Override
-    public void delete (K key){
-        this.root = delete(key, this.root);
-    }
+    public void delete (K key){ this.root = delete(key, this.root); }
 
     @Override
     public boolean contains(K key) {
@@ -38,9 +43,7 @@ public class MyBinarySearchTreeImpl<K extends Comparable<K>, T>
     }
 
     @Override
-    public int size(){
-        return size(this.root);
-    }
+    public int size(){ return size(this.root); }
 
     @Override
     public int countLeaf() {
@@ -121,14 +124,6 @@ public class MyBinarySearchTreeImpl<K extends Comparable<K>, T>
         return str;
 
     }
-
-    @Override
-    public Iterator<T> iterator() {
-
-        return null;
-    }
-
-
 
 
 

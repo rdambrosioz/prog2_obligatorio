@@ -31,8 +31,9 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
         this.chargeFactor = chargeFactor;
     }
 
+
     @Override
-    public void put(K key, T value) {
+    public synchronized void put(K key, T value) {
 
         if (((float) this.size + 1) / ((float) hashArray.length) > this.chargeFactor ){
             this.reHashing();
@@ -64,7 +65,7 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
     }
 
     @Override
-    public T remove(K key) {
+    public synchronized  T remove(K key) {
         T valueToReturn = null;
         int iterations = 0;
         int keyHash = key.hashCode();
@@ -85,7 +86,7 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
     }
 
     @Override
-    public T get(K key) {
+    public synchronized T get(K key) {
         T valueToReturn = null;
         int iterations = 0;
         int keyHash = key.hashCode();
@@ -130,7 +131,7 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
     }
 
     @Override
-    public T[] getValuesVector() {
+    public T[] getValuesArray() {
         int updates = 0;
         T[] vector = (T[]) new Object[size];
 
@@ -146,6 +147,8 @@ public class MyClosedHashImpl<K,T> implements MyHash<K,T> {
 
         return vector;
     }
+
+
 
     private int getPosition(int keyHash, int iterations){
         int position = 0;

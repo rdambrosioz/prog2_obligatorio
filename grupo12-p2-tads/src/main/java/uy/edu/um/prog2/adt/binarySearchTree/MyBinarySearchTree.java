@@ -2,7 +2,13 @@ package uy.edu.um.prog2.adt.binarySearchTree;
 
 import uy.edu.um.prog2.adt.list.MyList;
 
-public interface MyBinarySearchTree<K extends Comparable<K>, T> extends Iterable<T> {
+/**
+ *
+ * @param <K> Key type
+ * @param <T> Value type
+ */
+
+public interface MyBinarySearchTree<K extends Comparable<K>, T> {
 
     void insert (K key, T value);
 

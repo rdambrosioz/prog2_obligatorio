@@ -14,6 +14,6 @@ public interface MyHash<K,T> {
     int size();
 
     MyList<T> getValues();
-    T[] getValuesVector();
+    T[] getValuesArray();
 
 }

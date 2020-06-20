@@ -73,6 +73,7 @@ public class Queries {
         }
 
         return top10;
+
     }
 
     //CONSULTA 2

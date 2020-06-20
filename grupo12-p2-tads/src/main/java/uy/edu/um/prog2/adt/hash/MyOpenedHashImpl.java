@@ -107,7 +107,7 @@ public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
     }
 
     @Override
-    public T[] getValuesVector() {
+    public T[] getValuesArray() {
         T[] vectorToReturn = (T[]) new Object[this.size];
         int position = 0;
 
@@ -123,6 +123,9 @@ public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
         }
         return vectorToReturn;
     }
+
+
+
 
     private void reHashing(){
 
@@ -153,7 +156,6 @@ public class MyOpenedHashImpl<K,T> implements MyHash<K,T> {
         this.size = updates;
 
     }
-
 
     private int getNextPrimeNumber(int number){
         int numberToReturn = number + 1;

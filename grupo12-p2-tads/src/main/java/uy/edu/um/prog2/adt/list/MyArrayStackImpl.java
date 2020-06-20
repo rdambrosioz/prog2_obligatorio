@@ -16,6 +16,8 @@ public class MyArrayStackImpl<T> implements MyStack<T> {
         this.sizeTotal = sizeTotal;
         this.sizeDinamico = 0;
     }
+
+
     public void push(T value){
         stackArray[sizeDinamico]=  value;
         sizeDinamico++;
@@ -28,12 +30,11 @@ public class MyArrayStackImpl<T> implements MyStack<T> {
 
         return aSacar;
     }
+
     public T get(int posicion){
         T toQuit = stackArray[posicion];
         return toQuit;
     }
-
-
 
     public T top() {
         return stackArray[sizeDinamico-1];
@@ -63,6 +64,6 @@ public class MyArrayStackImpl<T> implements MyStack<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new MyArrayListIterator<>(stackArray, sizeDinamico);
     }
 }

@@ -39,11 +39,13 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         }
 
     }       //Operacion de la interfaz. Agrega al final
+
     @Override
     public void add(T valor) {
 
         addLast(valor);
     }
+
     @Override
     public void addFirst(T valor){                     //Agrega al principio
 
@@ -60,6 +62,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
             size++;
         }
     }
+
 
     /**
      * AQUI SE ENCUENTRAN TODOS LOS DISTINTOS CODIGOS DE REMOVER UN ELEMENTO DE UNA LISTA LISTA
@@ -86,6 +89,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         }
         return retorno;
     }
+
     @Override
     public T removeLast() {
         T devolver = null;
@@ -111,6 +115,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         }
         return devolver;
     }
+
     @Override
     public T removeValue(T valor) {
         Node<T> anterior = null;
@@ -142,6 +147,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         return null;
     }
 
+
     /**
      * AQUI SE ENCUENTRAN TODOS LOS DISTINTOS CODIGOS QUE PERMITEN OBETNER UN ELEMENTO DE LA LISTA
      * O CHECKEAR QUE UN ELEMENTO ESTE EN LA LISTA
@@ -151,6 +157,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     public T get(int posicion) throws ListOutOfIndex {         //Devuelve el valor
         return devolverNodoPosicion(posicion).getValor();
     }
+
     @Override
     public T getValue(T valueToSearch) {
         T devolver = null;
@@ -164,6 +171,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         }
         return devolver;
     }
+
     @Override
     public boolean contains (T valor){          //Devuelve si el valor esta en la lista
 
@@ -184,6 +192,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         return esta;
     }
 
+
     /**
      * OPERACIONES VARIAS DE LISTA
      */
@@ -192,6 +201,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
 
         return new MyLinkedListIterator<T>(primero);
     }
+
     @Override
     public int getSize() {
         return size;
@@ -213,10 +223,6 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     public String toString() {
         return visualize(" ");
     }
-
-    /**
-     * OPERACIONES PARA OPEREAR CON DISTINTAS LISTAS
-     */
 
 
     /**
@@ -240,16 +246,19 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
             return ultimo.getValor();
         }
     }
+
     @Override
     public void push(T element) {
 
         addLast(element);
 
     }
+
     @Override
     public boolean isEmpty() {
         return size == 0;
     }
+
     @Override
     public void makeEmpty() {
 
@@ -268,6 +277,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
         size = 0;
     }
 
+
     /**
      * AQUI SE ENCUENTRA EL CODIGO Y OPERACIONES DE LA IMPLEMENTACION DE UNA QUEUE
      */
@@ -275,10 +285,12 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
     public void enqueue(T element) {
         addLast(element);
     }
+
     @Override
     public void enqueueWithPriority(T element) {
         addInOrder(element);
     }
+
     @Override
     public T dequeue() throws EmptyQueue {
         Node<T> primero = this.primero;
@@ -295,6 +307,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
 
         return primero.getValor();
     }
+
 
     /**
      * OPERACIONES PRIVADAS DE LINKEDLIST
@@ -337,6 +350,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
             }
         }
     }
+
     private  Node<T> devolverNodoPosicion(int posicion) throws ListOutOfIndex{     //Devuelve el nodo en una posicion especifica
 
         Node<T> temp = null;
@@ -354,6 +368,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
 
         return temp;
     }
+
     private void addLast(T valor){                         //Agrega al final
 
 
@@ -367,6 +382,7 @@ public class MyLinkedListImpl<T> implements MyList<T>, MyStack<T>, MyQueue<T> {
             size++;
         }
     }
+
     private String visualize(String separacion){
 
         Node<T> temp = primero;

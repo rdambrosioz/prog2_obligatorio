@@ -151,7 +151,6 @@ public class MyArrayListImpl<T> implements MyList<T> {
         return array;
     }
 
-
     @Override
     public Iterator<T> iterator() {
         return new MyArrayListIterator<>(this.array, this.pointerToLastValue);
@@ -171,7 +170,6 @@ public class MyArrayListImpl<T> implements MyList<T> {
             this.array[i] = this.array[i+1];
         }
     }
-
 
     private void incrementArrayLength() {
 

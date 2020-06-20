@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args){
 
-        Queries queriesData = null;
+        Queries queriesData = new Queries();
 
         boolean finishProgramme = false;
         long time = 0;
@@ -25,7 +25,6 @@ public class Main {
             switch (option) {
                 case 1:
                     time = System.currentTimeMillis();
-                    queriesData = new Queries();
                     queriesData.loadData();
 
                     System.out.println("El tiempo de carga de datos fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");

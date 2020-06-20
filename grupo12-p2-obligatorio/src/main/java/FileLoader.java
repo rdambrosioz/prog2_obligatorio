@@ -1,16 +1,12 @@
-import com.sun.imageio.spi.RAFImageInputStreamSpi;
 import entities.*;
-import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 import uy.edu.um.prog2.adt.hash.MyHash;
 import uy.edu.um.prog2.adt.list.MyArrayListImpl;
 import uy.edu.um.prog2.adt.list.MyList;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -23,15 +19,54 @@ public class FileLoader {
     public static void loadData(MyHash<Book, Book> booksHash, MyHash<Language,Language> languages, MyHash<Author, Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash, MyHash<User,User> usersHash){
 
         loadBooksCSV(booksHash, languages, authorsHash, authorsPublicationsHash);
-        loadUsersCSV(booksHash, usersHash);
-        loadRatingsCSV(booksHash,usersHash);
+
+
+        Runnable r1 = new Runnable() {
+            @Override
+            public void run() {
+                loadUsersCSV(booksHash, usersHash);
+            }
+        };
+
+        Runnable r2 = new Runnable() {
+            @Override
+            public void run() {
+                loadRatingsCSV(booksHash,usersHash);
+            }
+        };
+
+        Thread bookings = new Thread(r1, "to_read");
+
+        Thread ratings = new Thread(r2, "bookings");
+
+        ratings.setPriority(Thread.MAX_PRIORITY);
+        bookings.setPriority(Thread.MIN_PRIORITY);
+
+        bookings.start();
+        ratings.start();
+
+        System.gc();
+
+        try {
+            bookings.join();
+            ratings.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.gc();
+
+//        loadUsersCSV(booksHash, usersHash);
+//        loadRatingsCSV(booksHash,usersHash);
+
+
 
     }
 
     private static void loadBooksCSV(MyHash<Book, Book> booksHash, MyHash<Language, Language> languages, MyHash<Author,Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash){
         Path pathToFile = Paths.get("..\\books.csv");
         MyList<String> authors = null;
-        Book newBook = null;
+        //Book newBook = null;
         Book book = null;
         Author newAuthor = null;
         Author author = null;
@@ -59,16 +94,20 @@ public class FileLoader {
 
                 language = findLanguage(languages, arguments.get(6));
 
-                newBook = new Book(Long.parseLong(arguments.get(0)));
-                book = booksHash.get(newBook);
+//                newBook = new Book(Long.parseLong(arguments.get(0)));
+//                book = booksHash.get(newBook);
+//
+//                if (book == null){
+//                    book = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
+//                    booksHash.put(book, book);
+//                }
 
-                if (book == null){
-                    book = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
-                    booksHash.put(book, book);
+                book = new Book(Long.parseLong(arguments.get(0)), arguments.get(1), yearOfPublication, arguments.get(4), arguments.get(5), arguments.get(7));
+                booksHash.put(book, book);
+
+                if (language != null) {
+                    language.addBook(book);
                 }
-
-
-                language.addBook(book);
 
                 authors = authorParser(arguments.get(2));
 
@@ -99,7 +138,6 @@ public class FileLoader {
         } catch (IOException error) {
             error.printStackTrace();
         }
-
 
     }
 
@@ -140,6 +178,7 @@ public class FileLoader {
             error.printStackTrace();
         }
 
+
     }
 
     private static void loadRatingsCSV(MyHash<Book, Book> booksHash, MyHash<User,User> usersHash){
@@ -150,12 +189,14 @@ public class FileLoader {
         User newUser = null;
 
 
+
         try (BufferedReader br = Files.newBufferedReader(pathToFile, UTF_8)) {
             String line = br.readLine();
 
             while ((line = br.readLine()) != null) {
 
                 MyList<String> arguments = parser(line,3);
+
 
                 book = booksHash.get(new Book(Long.parseLong(arguments.get(1))));
                 if (book == null){
@@ -265,6 +306,8 @@ public class FileLoader {
 
                 languageCode = "English";
                 break;
+            case "nan":
+                return null;
             case "ara":
                 languageCode = "Arabian";
                 break;
@@ -325,10 +368,10 @@ public class FileLoader {
             case "vie":
                 languageCode = "Vietnamese";
                 break;
-            case "nan":
-                languageCode = "Otro";
-                break;
+            default:
+                return null;
         }
+
 
         newLanguage = new Language(languageCode);
 
@@ -343,93 +386,6 @@ public class FileLoader {
 
 
     }
-
-    private static Language findLanguage2(MyHash<Language,Language> languages, String lang) {
-
-        String languageCode = null;
-        Language language = null;
-        Language newLanguage = null;
-
-        if (lang.equals("eng") || lang.equals("en-US") || lang.equals("en") || lang.equals("en-GB") || lang.equals("en-CA")) {
-            languageCode = "English";
-
-        }else if (lang.equals("ara")) {
-            languageCode = "Arabian";
-
-        }else if (lang.equals("fre")) {
-            languageCode = "French";
-
-        }else if (lang.equals("ind")) {
-            languageCode = "Indonesian";
-
-        }else if (lang.equals("spa")) {
-            languageCode = "Spanish";
-
-        }else if (lang.equals("ger")) {
-            languageCode = "German";
-
-        }else if (lang.equals("per")) {
-            languageCode = "Persian";
-
-        }else if (lang.equals("jpn")) {
-            languageCode = "Japanese";
-
-        }else if (lang.equals("por")) {
-            languageCode = "Portuguese";
-
-        }else if (lang.equals("pol")) {
-            languageCode = "Polish";
-
-        }else if (lang.equals("dan")) {
-            languageCode = "Danish";
-
-        }else if (lang.equals("ita")) {
-            languageCode = "Italian";
-
-        }else if (lang.equals("fil")) {
-            languageCode = "Filipino";
-
-        }else if (lang.equals("rus")) {
-            languageCode = "Russian";
-
-        }else if (lang.equals("mul")) {
-            languageCode = "Multiple Languages";
-
-        }else if (lang.equals("rum")) {
-            languageCode = "Romanian";
-
-        }else if (lang.equals("swe")) {
-            languageCode = "Swedish";
-
-        }else if (lang.equals("nl")) {
-            languageCode = "Dutch";
-
-        }else if (lang.equals("nor")) {
-            languageCode = "Norwegian";
-
-        }else if (lang.equals("tur")) {
-            languageCode = "Turkish";
-
-        }else if (lang.equals("vie")) {
-            languageCode = "Vietnamese";
-
-        } else{
-                languageCode = "Other";
-        }
-
-        newLanguage = new Language(languageCode);
-
-        language = languages.get(newLanguage);
-
-        if (language == null) {
-            language = newLanguage;
-            languages.put(language, language);
-        }
-
-        return language;
-    }
-
-
 
 
 }

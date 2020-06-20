@@ -1,6 +1,13 @@
 package uy.edu.um.prog2.adt.binarySearchTree;
 
+/**
+ *
+ * @param <K> Key type
+ * @param <T> Value type
+ */
+
 public class TreeNode<K, T> {
+
 
     private T value;
 
