@@ -1,4 +1,4 @@
-package entities.nodes;
+package entities.heapNodes;
 
 import entities.Book;
 

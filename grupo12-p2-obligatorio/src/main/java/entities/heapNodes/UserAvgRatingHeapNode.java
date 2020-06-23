@@ -1,12 +1,12 @@
-package entities.nodes;
+package entities.heapNodes;
 
 import entities.User;
 
-public class UserAvgRatingNode implements Comparable<UserAvgRatingNode>{
+public class UserAvgRatingHeapNode implements Comparable<UserAvgRatingHeapNode>{
 
     private User user;
 
-    public UserAvgRatingNode(User user) {
+    public UserAvgRatingHeapNode(User user) {
         this.user = user;
     }
 
@@ -15,7 +15,7 @@ public class UserAvgRatingNode implements Comparable<UserAvgRatingNode>{
     }
 
     @Override
-    public int compareTo(UserAvgRatingNode o) {
+    public int compareTo(UserAvgRatingHeapNode o) {
         int value = -1;
 
         float thisAvg = this.user.averageRating();

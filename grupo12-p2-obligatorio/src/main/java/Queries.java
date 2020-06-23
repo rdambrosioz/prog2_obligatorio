@@ -1,7 +1,7 @@
 import entities.*;
-import entities.nodes.BookBookingsHeapNode;
-import entities.nodes.BookRatedHeapNode;
-import entities.nodes.UserAvgRatingNode;
+import entities.heapNodes.BookBookingsHeapNode;
+import entities.heapNodes.BookRatedHeapNode;
+import entities.heapNodes.UserAvgRatingHeapNode;
 import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
 import uy.edu.um.prog2.adt.hash.MyHash;
 import uy.edu.um.prog2.adt.heap.MyHeap;
@@ -111,7 +111,7 @@ public class Queries {
 
 
     //CONSULTA 3
-    public MyList<UserAvgRatingNode> topRaters(){
+    public MyList<UserAvgRatingHeapNode> topRaters(){
 
         MyList<User> usersList = this.usersHash.getValues();
         if(usersList.getSize() < 10){
@@ -120,14 +120,14 @@ public class Queries {
         }
 
         MyHeap<User> usersHeap = new MyHeapImpl<>(usersList.getSize());
-        UserAvgRatingNode[] top10array = new UserAvgRatingNode[10];
-        MyList<UserAvgRatingNode> top10 = new MyArrayListImpl<>(10);
+        UserAvgRatingHeapNode[] top10array = new UserAvgRatingHeapNode[10];
+        MyList<UserAvgRatingHeapNode> top10 = new MyArrayListImpl<>(10);
 
         for (User user : usersList){
             usersHeap.insert(user);
         }
         for (int i = 0; i<10; i++){
-            top10array[i] = new UserAvgRatingNode(usersHeap.deleteMax());
+            top10array[i] = new UserAvgRatingHeapNode(usersHeap.deleteMax());
         }
         Sorting.heapSort(top10array);
 

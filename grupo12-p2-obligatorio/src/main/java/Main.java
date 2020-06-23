@@ -1,12 +1,8 @@
 import entities.AuthorPublications;
-import entities.Book;
 import entities.Language;
-import entities.User;
-import entities.nodes.BookBookingsHeapNode;
-import entities.nodes.BookRatedHeapNode;
-import entities.nodes.UserAvgRatingNode;
-import uy.edu.um.prog2.adt.hash.MyClosedHashImpl;
-import uy.edu.um.prog2.adt.hash.MyOpenedHashImpl;
+import entities.heapNodes.BookBookingsHeapNode;
+import entities.heapNodes.BookRatedHeapNode;
+import entities.heapNodes.UserAvgRatingHeapNode;
 import uy.edu.um.prog2.adt.list.MyList;
 
 public class Main {
@@ -58,10 +54,10 @@ public class Main {
 
                             case 3:
                                 time = System.currentTimeMillis();
-                                MyList<UserAvgRatingNode> top10Raters = queriesData.topRaters();
+                                MyList<UserAvgRatingHeapNode> top10Raters = queriesData.topRaters();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
                                 if(top10Raters != null) {
-                                    for (UserAvgRatingNode user : top10Raters) {
+                                    for (UserAvgRatingHeapNode user : top10Raters) {
                                         System.out.println(user);
                                     }
                                 }
