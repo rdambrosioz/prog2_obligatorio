@@ -28,11 +28,6 @@ public class Main {
                     queriesData.loadData();
 
                     System.out.println("El tiempo de carga de datos fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                    System.out.println("La cantidad de libros es: " + queriesData.getBooksList().size());
-                    System.out.println("La cantidad de idiomas es: " + queriesData.getLanguagesHash().size());
-                    System.out.println("La cantidad de autores es: " + queriesData.getAuthorsHash().size());
-                    System.out.println("La cantidad de autores por año es: " + queriesData.getAuthorsPublicationsHash().size());
-                    System.out.println("La cantidad de usuarios es: " + queriesData.getUsersHash().size());
 
                     break;
                 case 2:
@@ -43,8 +38,10 @@ public class Main {
                                 time = System.currentTimeMillis();
                                 MyList<BookBookingsHeapNode> top10Reserved = queriesData.topReserved();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                                for (BookBookingsHeapNode book : top10Reserved){
-                                    System.out.println(book);
+                                if(top10Reserved != null) {
+                                    for (BookBookingsHeapNode book : top10Reserved) {
+                                        System.out.println(book);
+                                    }
                                 }
                                 break;
 
@@ -52,8 +49,10 @@ public class Main {
                                 time = System.currentTimeMillis();
                                 MyList<BookRatedHeapNode> top20booksEvaluated = queriesData.top20WithMoreEvaluations();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                                for (BookRatedHeapNode book : top20booksEvaluated){
-                                    System.out.println(book);
+                                if(top20booksEvaluated != null) {
+                                    for (BookRatedHeapNode book : top20booksEvaluated) {
+                                        System.out.println(book);
+                                    }
                                 }
                                 break;
 
@@ -61,8 +60,10 @@ public class Main {
                                 time = System.currentTimeMillis();
                                 MyList<UserAvgRatingNode> top10Raters = queriesData.topRaters();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                                for (UserAvgRatingNode user : top10Raters){
-                                    System.out.println(user);
+                                if(top10Raters != null) {
+                                    for (UserAvgRatingNode user : top10Raters) {
+                                        System.out.println(user);
+                                    }
                                 }
                                 break;
 
@@ -70,8 +71,10 @@ public class Main {
                                 time = System.currentTimeMillis();
                                 MyList<Language> top5Languages = queriesData.top5WithMoreReserves();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                                for (Language language : top5Languages){
-                                    System.out.println(language);
+                                if(top5Languages != null) {
+                                    for (Language language : top5Languages) {
+                                        System.out.println(language);
+                                    }
                                 }
                                 break;
 
@@ -79,8 +82,10 @@ public class Main {
                                 time = System.currentTimeMillis();
                                 MyList<AuthorPublications> top20Authors = queriesData.top20Author();
                                 System.out.println("El tiempo de demora de la consulta fue: " + (System.currentTimeMillis() - time) + " milisegundos" + "\n");
-                                for (AuthorPublications author : top20Authors){
-                                    System.out.println(author);
+                                if(top20Authors != null) {
+                                    for (AuthorPublications author : top20Authors) {
+                                        System.out.println(author);
+                                    }
                                 }
                                 break;
                         }
