@@ -64,7 +64,7 @@ public class FileLoader {
     }
 
     private static void loadBooksCSV(MyHash<Book, Book> booksHash, MyHash<Language, Language> languages, MyHash<Author,Author> authorsHash, MyHash<AuthorPublications, AuthorPublications> authorsPublicationsHash){
-        Path pathToFile = Paths.get("..\\books.csv");
+        Path pathToFile = Paths.get("books.csv");
         MyList<String> authors = null;
         Book newBook = null;
         Book book = null;
@@ -141,7 +141,7 @@ public class FileLoader {
     }
 
     private static void loadUsersCSV(MyHash<Book,Book> booksHash, MyHash<User,User> usersHash){  // Falta ratings
-        Path pathToFile = Paths.get("..\\to_read.csv");
+        Path pathToFile = Paths.get("to_read.csv");
         User newUser = null;
         User user = null;
         Book newToRead = null;
@@ -181,7 +181,7 @@ public class FileLoader {
     }
 
     private static void loadRatingsCSV(MyHash<Book, Book> booksHash, MyHash<User,User> usersHash){
-        Path pathToFile = Paths.get("..\\ratings.csv");
+        Path pathToFile = Paths.get("ratings.csv");
 
         Book book = null;
         User user = null;

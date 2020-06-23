@@ -1,6 +1,3 @@
-books.csv
-ratings.csv
-to_read.csv
 
 
 grupo12-p2-tads/.idea**
@@ -17,8 +14,9 @@ grupo12-p2-obligatorio/graddle/**
 grupo12-p2-obligatorio/gradlew*
 grupo12-p2-obligatorio/gradle.bat
 grupo12-p2-obligatorio/build/**
+grupo12-p2-obligatorio/books.csv
+grupo12-p2-obligatorio/ratings.csv
+grupo12-p2-obligatorio/to_read.csv
 
 
 .idea**
-
-
